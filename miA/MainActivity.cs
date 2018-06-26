@@ -1,5 +1,4 @@
 ﻿using Android.App;
-using Android.Widget;
 using Android.OS;
 
 using Com.Syncfusion.Schedule;
@@ -8,14 +7,14 @@ using System.Collections.Generic;
 using Java.Util;
 using Android.Graphics;
 
-
 using Com.Syncfusion.Charts;
 using System.Collections.ObjectModel;
+
 
 namespace miA
 {
     [Activity(Label = "miA", MainLauncher = true)]
-    public class MainActivity : Activity
+    public class MainActivity : Android.Support.V4.App.FragmentActivity
     {
         SfSchedule schedule;
 
@@ -28,6 +27,9 @@ namespace miA
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+
+
 
             schedule = new SfSchedule(this);
             schedule.MonthViewSettings.ShowAppointmentsInline = true;
@@ -214,6 +216,8 @@ namespace miA
                 }
             }
         }
+
+
 
     }
 
