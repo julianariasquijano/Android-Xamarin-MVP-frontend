@@ -53,7 +53,7 @@ namespace miA
             CreateAppointments();
             schedule.Appointments = Meetings;
 
-            //SetContentView(schedule);
+            SetContentView(schedule);
             ///////////////////////////////////////
             SfChart chart = new SfChart(this);
 
@@ -105,7 +105,7 @@ namespace miA
             series.TooltipEnabled = true;
 
 
-            SetContentView(chart);
+            //SetContentView(chart);
 
 
 
