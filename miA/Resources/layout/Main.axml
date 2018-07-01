@@ -1,7 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:minWidth="25px"
-    android:minHeight="25px" />
+<LinearLayout xmlns:p="http://schemas.android.com/apk/res/android"
+    p:orientation="vertical"
+    p:id="@+id/linearLayout0"
+    p:layout_width="match_parent"
+    p:layout_height="match_parent"
+    p:background="#ffffffff">
+    <LinearLayout
+        p:orientation="horizontal"
+        p:layout_width="match_parent"
+        p:layout_height="wrap_content"
+        p:gravity="center"
+        p:layout_gravity="top"
+        p:id="@+id/linearLayout1">
+        <ImageButton
+            p:layout_width="wrap_content"
+            p:layout_height="match_parent"
+            p:id="@+id/button3"
+            p:src="" />
+        <ImageButton
+            p:layout_width="wrap_content"
+            p:layout_height="wrap_content"
+            p:id="@+id/button2"
+            p:src="@android:drawable/ic_menu_zoom" />
+        <Button
+            p:layout_width="wrap_content"
+            p:layout_height="match_parent"
+            p:id="@+id/button4"
+            p:background="#ffffff"
+            p:text="Semana" />
+        <Button
+            p:text="Día"
+            p:layout_width="wrap_content"
+            p:layout_height="wrap_content"
+            p:layout_gravity="center_horizontal"
+            p:id="@+id/button1"
+            p:background="#ffffff" />
+    </LinearLayout>
+    <Button
+        p:layout_width="0dp"
+        p:layout_weight="1"
+        p:layout_height="wrap_content"
+        p:text="1" />
+    <Button
+        p:layout_width="0dp"
+        p:layout_weight="1"
+        p:layout_height="wrap_content"
+        p:text="2" />
+    <Button
+        p:layout_width="0dp"
+        p:layout_weight="1"
+        p:layout_height="wrap_content"
+        p:text="3" />
+</LinearLayout>

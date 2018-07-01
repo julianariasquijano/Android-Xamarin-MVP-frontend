@@ -53,7 +53,7 @@ namespace miA
             CreateAppointments();
             schedule.Appointments = Meetings;
 
-            SetContentView(schedule);
+            //SetContentView(schedule);
             ///////////////////////////////////////
             SfChart chart = new SfChart(this);
 
@@ -110,7 +110,7 @@ namespace miA
 
 
 
-            //SetContentView(Resource.Layout.Main);
+            SetContentView(Resource.Layout.Main);
         }
 
         private void CreateSubjectCollection()
