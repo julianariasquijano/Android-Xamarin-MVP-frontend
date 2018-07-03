@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:p="http://schemas.android.com/apk/res/android"
+    p:orientation="vertical"
+    p:id="@+id/linearLayout0"
+    p:layout_width="match_parent"
+    p:layout_height="match_parent"
+    p:minWidth="25px"
+    p:minHeight="25px">
+    <EditText
+        p:inputType="text"
+        p:layout_width="match_parent"
+        p:layout_height="wrap_content"
+        p:id="@+id/registroNombre"
+        p:hint="Nombre" />
+    <EditText
+        p:inputType="textEmailAddress"
+        p:layout_width="match_parent"
+        p:layout_height="wrap_content"
+        p:id="@+id/registroEmail"
+        p:hint="Correo" />
+    <EditText
+        p:inputType="number"
+        p:layout_width="match_parent"
+        p:layout_height="wrap_content"
+        p:id="@+id/registroTelefono"
+        p:hint="Teléfono" />
+    <EditText
+        p:inputType="textPassword"
+        p:layout_width="match_parent"
+        p:layout_height="wrap_content"
+        p:id="@+id/registroPassword"
+        p:hint="Contraseña" />
+    <EditText
+        p:inputType="textPassword"
+        p:layout_width="match_parent"
+        p:layout_height="wrap_content"
+        p:id="@+id/registroPasswordCheck"
+        p:hint="Repetir Contraseña" />
+    <Button
+        p:text="Continuar"
+        p:layout_width="match_parent"
+        p:layout_height="wrap_content"
+        p:id="@+id/registroButtonContinue" />
+</LinearLayout>

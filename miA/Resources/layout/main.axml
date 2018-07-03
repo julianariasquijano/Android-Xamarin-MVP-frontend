@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:p="http://schemas.android.com/apk/res/android"
+    p:orientation="vertical"
+    p:id="@+id/linearLayout"
+    p:layout_width="match_parent"
+    p:layout_height="match_parent"
+    p:minWidth="25px"
+    p:minHeight="25px">
+    <ScrollView
+        p:layout_width="match_parent"
+        p:layout_height="match_parent">
+        <LinearLayout
+            p:orientation="vertical"
+            p:padding="1px"
+            p:layout_width="match_parent"
+            p:layout_height="match_parent">
+            <Button
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:layout_marginBottom="1px"
+                p:text="Agendas Externas"
+                p:drawableLeft="@drawable/foreignagendas" />
+            <Button
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:layout_marginBottom="1px"
+                p:text="Mi Agenda General"
+                p:drawableLeft="@drawable/mygeneralagenda"
+                p:id="@+id/button3" />
+            <Button
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:layout_marginBottom="1px"
+                p:text="Eventos Pendientes"
+                p:drawableLeft="@drawable/pendingschedule" />
+            <Button
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:layout_marginBottom="1px"
+                p:text="Mis Recursos"
+                p:drawableRight="@drawable/myresources"
+                p:id="@+id/button2" />
+            <Button
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:layout_marginBottom="1px"
+                p:text="Mis Clientes"
+                p:drawableRight="@drawable/myclients"
+                p:id="@+id/button4" />
+            <Button
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:layout_marginBottom="1px"
+                p:text="Estadísticas"
+                p:drawableRight="@drawable/stats" />
+            <Button
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:layout_marginBottom="1px"
+                p:text="Mis datos"
+                p:drawableLeft="@drawable/userData" />
+            <Button
+                p:id="@+id/closeSessionButton"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:layout_marginBottom="1px"
+                p:text="Cerrar Sesión"
+                p:drawableLeft="@drawable/closeSession" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
