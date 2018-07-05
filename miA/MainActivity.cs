@@ -58,13 +58,15 @@ namespace miA
 
                         if ((string)resultado["status"] == "OK")
                         {
-                            Datos.idUsuario = (string)resultado["idUsuario"];
+                            Datos.idUsuario = mail.Text.ToLower().Trim();
                             Datos.token = (string)resultado["token"];
 
-                            if (Datos.idUsuario != "")
+                            if (Datos.token != "")
                             {
 
-                                editorPreferencias.PutString("mail", mail.Text);
+                                editorPreferencias.PutString("mail", Datos.idUsuario);
+                                editorPreferencias.PutString("idUsuario", Datos.idUsuario);
+                                editorPreferencias.PutString("token", Datos.token);
                                 editorPreferencias.PutString("logged", "logged");
                                 editorPreferencias.Commit();
 
@@ -109,6 +111,23 @@ namespace miA
                     ActiveLoginButtons();
                 };
 
+
+                buttonRemember.Click += (sender, e) => {
+
+                    var mail = FindViewById<EditText>(Resource.Id.email).Text.ToLower().Trim();
+
+                    if (Datos.EsCorreoElectronico(mail))
+                    {
+                        var intent = new Intent(this, typeof(RememberPassword));
+                        intent.PutExtra("mail", mail);
+                        StartActivity(intent);
+                    }
+                    else Utilidades.showMessage(this, "Antención", "Para continuar, digita el correo electrónico registrado.", "OK");
+
+
+
+                };
+
                 buttonRegister.Click += (sender, e) => { 
                 
                     var intent = new Intent(this, typeof(Registro));
@@ -133,9 +152,26 @@ namespace miA
 
                 //mainLayout.AddView(layout1);
 
+
+                Datos.idUsuario = preferencias.GetString("idUsuario", null);
+                Datos.token = preferencias.GetString("token", null);
+
+
+                var userDataButton = FindViewById<Button>(Resource.Id.userDataButton);
+                userDataButton.Click += (sender, e) => {
+
+                    var intent = new Intent(this, typeof(EditarRegistro));
+                    StartActivity(intent);
+
+
+                };
+
+
                 var closeSessionButton = FindViewById<Button>(Resource.Id.closeSessionButton);
                 closeSessionButton.Click +=(sender, e) => {
 
+                    editorPreferencias.PutString("idUsuario", "");
+                    editorPreferencias.PutString("token", "");
                     editorPreferencias.PutString("logged", "");
                     editorPreferencias.Commit();
 
@@ -145,6 +181,8 @@ namespace miA
                     this.Finish();
 
                 };
+
+
 
 
             }

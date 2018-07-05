@@ -95,6 +95,8 @@
     <Compile Include="Datos.cs" />
     <Compile Include="Utilidades.cs" />
     <Compile Include="Registro.cs" />
+    <Compile Include="EditarRegistro.cs" />
+    <Compile Include="RememberPassword.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -119,6 +121,7 @@
     <AndroidResource Include="Resources\drawable\closeSession.png" />
     <AndroidResource Include="Resources\drawable\addClient.png" />
     <AndroidResource Include="Resources\layout\registro.axml" />
+    <AndroidResource Include="Resources\layout\RememberPassword.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\mipmap-hdpi\" />

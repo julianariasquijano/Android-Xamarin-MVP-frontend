@@ -15,45 +15,49 @@
             p:layout_width="match_parent"
             p:layout_height="match_parent">
             <Button
+                p:id="@+id/foreignAgendasButton"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
                 p:layout_marginBottom="1px"
                 p:text="Agendas Externas"
                 p:drawableLeft="@drawable/foreignagendas" />
             <Button
+                p:id="@+id/foreignAgendasButton"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
                 p:layout_marginBottom="1px"
                 p:text="Mi Agenda General"
-                p:drawableLeft="@drawable/mygeneralagenda"
-                p:id="@+id/button3" />
+                p:drawableLeft="@drawable/mygeneralagenda" />
             <Button
+                p:id="@+id/pendingScheduleButton"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
                 p:layout_marginBottom="1px"
                 p:text="Eventos Pendientes"
                 p:drawableLeft="@drawable/pendingschedule" />
             <Button
+                p:id="@+id/myResourcesButton"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
                 p:layout_marginBottom="1px"
                 p:text="Mis Recursos"
-                p:drawableRight="@drawable/myresources"
-                p:id="@+id/button2" />
+                p:drawableRight="@drawable/myresources" />
             <Button
+                p:id="@+id/myClientsButton"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
                 p:layout_marginBottom="1px"
                 p:text="Mis Clientes"
-                p:drawableRight="@drawable/myclients"
-                p:id="@+id/button4" />
+                p:drawableRight="@drawable/myclients" />
             <Button
+                p:id="@+id/statsButton"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
                 p:layout_marginBottom="1px"
                 p:text="Estadísticas"
                 p:drawableRight="@drawable/stats" />
             <Button
+                p:id="@+id/userDataButton"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
                 p:layout_marginBottom="1px"

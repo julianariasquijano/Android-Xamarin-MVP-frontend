@@ -19,13 +19,13 @@ namespace miA
         public static string mensajeMantenimiento = "Aplicación en mantenimiento.";
 
         public static string registerAndAuthenticationWebServiceUrl = "http://www.enjoyframework.com?app=mia&mod=ra&act=";
-        public static string sessionDataWebServiceUrl = "http://www.enjoyframework.com?app=mia&mod=ra&act=";
+        public static string sessionDataWebServiceUrl = "http://www.enjoyframework.com?app=mia&mod=sd&act=";
         public static string personalDataBaseWebServiceUrl = "http://www.enjoyframework.com?app=mia&mod=pdb&act=";
         public static string idUsuario = ""; //Usado cuando el usuario ha realizado un login satisfactorio
         public static string token = "";
 
-        private static int intentosHttp = 3;
-        private static int intentosHttpTimeOut = 3000;
+        private static int intentosHttp = 2;
+        private static int intentosHttpTimeOut = 10000;
 
         public Datos()
         {
@@ -101,16 +101,17 @@ namespace miA
                 }
                 catch (WebException ex)
                 {
+                    Thread.Sleep(request.Timeout);
                     string status = ex.Status.ToString();
                     if (status == "RequestCanceled" || status == "ConnectFailure" || status == "NameResolutionFailure")
                     {
                         jsonDoc["mensaje"] = "Por favor verifica tu conexión a Internet";
-                        break;
+                        //break;
                     }
-                    else if (status == "Timeout")
-                    {
-                        Thread.Sleep(1000);
-                    }
+                    //else if (status == "Timeout")
+                    //{
+                    //    Thread.Sleep(1000);
+                    //}
 
                 }
                 catch (Exception ex)
@@ -131,7 +132,7 @@ namespace miA
         public static JsonValue LlamarWsSync(string ws, string var)
         {
             Encoding iso = Encoding.GetEncoding("ISO-8859-1");
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri( ws + "&var=" + HttpUtility.UrlEncode(var, iso) + "&versionApp=" + Datos.versionApp + "&token=" + Datos.token + "&idUsuario=" + Datos.idUsuario));
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri( ws + "&var=" + HttpUtility.UrlEncode(var, iso) + "&versionApp=" + Datos.versionApp + "&token=" + Datos.token + "&idUsuario=" + HttpUtility.UrlEncode(Datos.idUsuario, iso) ));
             return HttpWsRequestSync(request);
         }
 
@@ -163,6 +164,40 @@ namespace miA
 
             Encoding iso = Encoding.GetEncoding("ISO-8859-1");
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(Datos.registerAndAuthenticationWebServiceUrl + "nuevoRegistro" + cadenaDeParametros));
+            return HttpWsRequestSync(request);
+        }
+
+
+        public static JsonValue editarRegistro(Dictionary<string, string> datos)
+        {
+
+            // Create an HTTP web request using the URL:
+            string cadenaDeParametros = "";
+            cadenaDeParametros += "&nombre=" + datos["nombre"];
+            cadenaDeParametros += "&correo=" + datos["correo"];
+            cadenaDeParametros += "&telefono=" + datos["telefono"];
+            cadenaDeParametros += "&password=" + datos["password"];
+            cadenaDeParametros += "&idUsuario=" + Datos.idUsuario;
+            cadenaDeParametros += "&token=" + Datos.token;
+
+            Encoding iso = Encoding.GetEncoding("ISO-8859-1");
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(Datos.sessionDataWebServiceUrl + "editarRegistro" + cadenaDeParametros));
+            return HttpWsRequestSync(request);
+        }
+
+
+        public static JsonValue ResetPassword2(Dictionary<string, string> data)
+        {
+            // Create an HTTP web request using the URL:
+            string cadenaDeParametros = "";
+            cadenaDeParametros += "&codigo=" + data["receivedCode"];
+            cadenaDeParametros += "&clave=" + data["password"];
+            cadenaDeParametros += "&correo=" + data["mail"];
+
+            cadenaDeParametros += "&versionApp=" + Datos.versionApp;
+
+            Encoding iso = Encoding.GetEncoding("ISO-8859-1");
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(Datos.registerAndAuthenticationWebServiceUrl + "resetPassword2" + cadenaDeParametros));
             return HttpWsRequestSync(request);
         }
 
