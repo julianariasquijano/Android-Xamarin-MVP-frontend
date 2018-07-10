@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:p="http://schemas.android.com/apk/res/android"
     p:orientation="vertical"
-    p:id="@+id/linearLayout0"
+    p:id="@+id/resourceViewMainLayout"
     p:layout_width="match_parent"
     p:layout_height="match_parent"
     p:minWidth="25px"
@@ -11,8 +11,7 @@
         p:layout_width="match_parent"
         p:layout_height="wrap_content"
         p:gravity="left"
-        p:layout_gravity="top"
-        p:background="#ffa0a7d4">
+        p:layout_gravity="top">
         <LinearLayout
             p:orientation="horizontal"
             p:background="#ffa0a7d4"
@@ -31,48 +30,40 @@
             p:layout_width="match_parent"
             p:layout_height="wrap_content"
             p:layout_gravity="right"
-            p:gravity="right" />
+            p:gravity="right">
+            <ImageButton
+                p:id="@+id/deleteButton"
+                p:layout_width="wrap_content"
+                p:layout_height="wrap_content"
+                p:src="@drawable/delete" />
+        </LinearLayout>
     </LinearLayout>
-    <TextView
-        p:textAppearance="?android:attr/textAppearanceMedium"
-        p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:id="@+id/mensajeRegistro"
-        p:textStyle="bold"
-        p:gravity="center" />
     <EditText
-        p:inputType="text"
+        p:id="@+id/resourceName"
+        p:hint="Nombre del Elemento"
         p:layout_width="match_parent"
         p:layout_height="wrap_content"
-        p:id="@+id/registroNombre"
-        p:hint="Nombre" />
-    <EditText
-        p:inputType="textEmailAddress"
-        p:layout_width="match_parent"
+        p:layout_marginBottom="13dp" />
+    <RadioGroup
+        p:id="@+id/radioGroup"
+        p:layout_width="fill_parent"
         p:layout_height="wrap_content"
-        p:id="@+id/registroEmail"
-        p:hint="Correo" />
-    <EditText
-        p:inputType="number"
-        p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:id="@+id/registroTelefono"
-        p:hint="Teléfono" />
-    <EditText
-        p:inputType="textPassword"
-        p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:id="@+id/registroPassword"
-        p:hint="Contraseña" />
-    <EditText
-        p:inputType="textPassword"
-        p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:id="@+id/registroPasswordCheck"
-        p:hint="Repetir Contraseña" />
+        p:orientation="vertical">
+        <RadioButton
+            p:id="@+id/elementRadio"
+            p:layout_width="wrap_content"
+            p:layout_height="wrap_content"
+            p:text="Tipo: Recurso" />
+        <RadioButton
+            p:id="@+id/groupRadio"
+            p:layout_width="wrap_content"
+            p:layout_height="wrap_content"
+            p:text="Tipo : Carpeta Agrupadora de Recursos" />
+    </RadioGroup>
     <Button
-        p:text="Continuar"
+        p:id="@+id/resourceSaveButton"
         p:layout_width="match_parent"
         p:layout_height="wrap_content"
-        p:id="@+id/registroButtonContinue" />
+        p:layout_marginBottom="13dp"
+        p:text="Guardar" />
 </LinearLayout>

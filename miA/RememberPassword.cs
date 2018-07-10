@@ -20,6 +20,12 @@ namespace miA
             mail = Intent.GetStringExtra("mail").ToLower().Trim();
             SetContentView(Resource.Layout.RememberPassword);
 
+
+            var backButton = FindViewById<ImageButton>(Resource.Id.backButton);
+            backButton.Click += (sender, e) => {
+                this.Finish();
+            };
+
             var sendCodeButton = FindViewById<Button>(Resource.Id.sendCodeButton);
 
             sendCodeButton.Click += (sender, e) => {
@@ -53,7 +59,7 @@ namespace miA
                     var data = new Dictionary<string, string>
                     {
                         ["receivedCode"] = receivedCode.Text,
-                        ["password"] = Datos.Sha1Hash(password.Text),
+                        ["password"] = Utilidades.Sha1Hash(password.Text),
                         ["mail"] = mail
                     };
 

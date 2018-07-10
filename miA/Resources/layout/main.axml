@@ -11,65 +11,73 @@
         p:layout_height="match_parent">
         <LinearLayout
             p:orientation="vertical"
-            p:padding="1px"
+            p:padding="20px"
             p:layout_width="match_parent"
             p:layout_height="match_parent">
             <Button
                 p:id="@+id/foreignAgendasButton"
+                p:background="@android:color/transparent"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
-                p:layout_marginBottom="1px"
+                p:layout_marginBottom="13dp"
                 p:text="Agendas Externas"
                 p:drawableLeft="@drawable/foreignagendas" />
             <Button
                 p:id="@+id/foreignAgendasButton"
+                p:background="@android:color/transparent"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
-                p:layout_marginBottom="1px"
+                p:layout_marginBottom="13dp"
                 p:text="Mi Agenda General"
                 p:drawableLeft="@drawable/mygeneralagenda" />
             <Button
                 p:id="@+id/pendingScheduleButton"
+                p:background="@android:color/transparent"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
-                p:layout_marginBottom="1px"
+                p:layout_marginBottom="13dp"
                 p:text="Eventos Pendientes"
                 p:drawableLeft="@drawable/pendingschedule" />
             <Button
                 p:id="@+id/myResourcesButton"
+                p:background="@android:color/transparent"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
-                p:layout_marginBottom="1px"
+                p:layout_marginBottom="13dp"
                 p:text="Mis Recursos"
-                p:drawableRight="@drawable/myresources" />
+                p:drawableLeft="@drawable/myresources" />
             <Button
                 p:id="@+id/myClientsButton"
+                p:background="@android:color/transparent"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
-                p:layout_marginBottom="1px"
+                p:layout_marginBottom="13dp"
                 p:text="Mis Clientes"
-                p:drawableRight="@drawable/myclients" />
+                p:drawableLeft="@drawable/myclients" />
             <Button
                 p:id="@+id/statsButton"
+                p:background="@android:color/transparent"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
-                p:layout_marginBottom="1px"
+                p:layout_marginBottom="13dp"
                 p:text="Estadísticas"
-                p:drawableRight="@drawable/stats" />
+                p:drawableLeft="@drawable/stats" />
             <Button
                 p:id="@+id/userDataButton"
+                p:background="@android:color/transparent"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
-                p:layout_marginBottom="1px"
+                p:layout_marginBottom="13dp"
                 p:text="Mis datos"
-                p:drawableLeft="@drawable/userData" />
+                p:drawableLeft="@drawable/userdata" />
             <Button
                 p:id="@+id/closeSessionButton"
+                p:background="@android:color/transparent"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
-                p:layout_marginBottom="1px"
+                p:layout_marginBottom="13dp"
                 p:text="Cerrar Sesión"
-                p:drawableLeft="@drawable/closeSession" />
+                p:drawableLeft="@drawable/closesession" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

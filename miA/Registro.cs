@@ -19,6 +19,13 @@ namespace miA
 
             SetContentView(Resource.Layout.registro);
 
+
+            var backButton = FindViewById<ImageButton>(Resource.Id.backButton);
+            backButton.Click += (sender, e) => {
+                this.Finish();
+            };
+
+
             var buttonContinue = FindViewById<Button>(Resource.Id.registroButtonContinue);
 
             buttonContinue.Click += (sender, e) =>
@@ -39,7 +46,7 @@ namespace miA
                         ["nombre"] = nombre.Text,
                         ["correo"] = mail.Text,
                         ["telefono"] = telefono.Text,
-                        ["password"] = Datos.Sha1Hash(password.Text)
+                        ["password"] = Utilidades.Sha1Hash(password.Text)
                     };
 
 
@@ -129,7 +136,7 @@ namespace miA
                 resutlado = "Digita un teléfono de contacto.";
 
 
-            if (mail.Text == null || !Datos.EsCorreoElectronico(mail.Text) || mail.Text == "")
+            if (mail.Text == null || !Utilidades.EsCorreoElectronico(mail.Text) || mail.Text == "")
                 resutlado = "Digita tu correo electrónico.";
 
 

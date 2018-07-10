@@ -43,7 +43,7 @@ namespace miA
                     var password = FindViewById<EditText>(Resource.Id.password);
 
                     InactiveLoginButtons();
-                    if (mail.Text == null || mail.Text == "" || !Datos.EsCorreoElectronico(mail.Text))
+                    if (mail.Text == null || mail.Text == "" || !Utilidades.EsCorreoElectronico(mail.Text))
                         
                         Utilidades.showMessage(this, "Antención", "Para continuar, digita el correo electrónico registrado.", "OK");
 
@@ -116,14 +116,13 @@ namespace miA
 
                     var mail = FindViewById<EditText>(Resource.Id.email).Text.ToLower().Trim();
 
-                    if (Datos.EsCorreoElectronico(mail))
+                    if (Utilidades.EsCorreoElectronico(mail))
                     {
                         var intent = new Intent(this, typeof(RememberPassword));
                         intent.PutExtra("mail", mail);
                         StartActivity(intent);
                     }
                     else Utilidades.showMessage(this, "Antención", "Para continuar, digita el correo electrónico registrado.", "OK");
-
 
 
                 };
@@ -141,20 +140,27 @@ namespace miA
             }
             else {
                 SetContentView(Resource.Layout.main);
-                //LinearLayout mainLayout = FindViewById<LinearLayout>(Resource.Id.linearLayout);
-
-                //var layout1 = new LinearLayout(this.BaseContext);layout1.Orientation = Orientation.Horizontal;
-                //var button11 = new ImageButton(this.BaseContext);button11.SetBackgroundColor(Color.Transparent);
-                //var button12 = new ImageButton(this.BaseContext);
-                //button11.SetImageResource(Resource.Drawable.foreignAgendas);
-                //button12.SetImageResource(Resource.Drawable.myGeneralAgenda);
-                //layout1.AddView(button11);layout1.AddView(button12);
-
-                //mainLayout.AddView(layout1);
-
 
                 Datos.idUsuario = preferencias.GetString("idUsuario", null);
                 Datos.token = preferencias.GetString("token", null);
+
+                var myResourcesButton = FindViewById<Button>(Resource.Id.myResourcesButton);
+                myResourcesButton.Click += (sender, e) => {
+
+                    if (Information.mainRd == null)
+                    {
+                        Information.PopulateResources();
+                    }
+
+
+                    var intent = new Intent(this, typeof(ResourceView));
+                    intent.PutExtra("json", ResourceDefinition.ToJson(Information.mainRd));
+                    intent.PutExtra("start", "");
+                    StartActivity(intent);
+                    OverridePendingTransition(0, 0);
+
+
+                };
 
 
                 var userDataButton = FindViewById<Button>(Resource.Id.userDataButton);
@@ -162,6 +168,7 @@ namespace miA
 
                     var intent = new Intent(this, typeof(EditarRegistro));
                     StartActivity(intent);
+                    OverridePendingTransition(0, 0);
 
 
                 };

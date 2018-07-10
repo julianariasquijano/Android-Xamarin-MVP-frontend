@@ -87,6 +87,7 @@
     <Reference Include="System.Json" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -97,6 +98,10 @@
     <Compile Include="Registro.cs" />
     <Compile Include="EditarRegistro.cs" />
     <Compile Include="RememberPassword.cs" />
+    <Compile Include="ResourceDefinition.cs" />
+    <Compile Include="ResourceView.cs" />
+    <Compile Include="EditResource.cs" />
+    <Compile Include="Information.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -122,6 +127,15 @@
     <AndroidResource Include="Resources\drawable\addClient.png" />
     <AndroidResource Include="Resources\layout\registro.axml" />
     <AndroidResource Include="Resources\layout\RememberPassword.axml" />
+    <AndroidResource Include="Resources\layout\resourceView.axml" />
+    <AndroidResource Include="Resources\drawable\folder.png" />
+    <AndroidResource Include="Resources\drawable\resource.png" />
+    <AndroidResource Include="Resources\layout\EditResource.axml" />
+    <AndroidResource Include="Resources\drawable\back.png" />
+    <AndroidResource Include="Resources\drawable\edit.png" />
+    <AndroidResource Include="Resources\drawable\delete.png" />
+    <AndroidResource Include="Resources\drawable\add.png" />
+    <AndroidResource Include="Resources\drawable\home.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\mipmap-hdpi\" />

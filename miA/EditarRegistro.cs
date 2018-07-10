@@ -1,15 +1,9 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Json;
-using System.Linq;
-using System.Text;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 
 namespace miA
@@ -21,6 +15,14 @@ namespace miA
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.registro);
+
+
+            var backButton = FindViewById<ImageButton>(Resource.Id.backButton);
+            backButton.Click += (sender, e) => {
+                this.Finish();
+                OverridePendingTransition(0, 0);
+            };
+
 
             var nombre = FindViewById<EditText>(Resource.Id.registroNombre);
             var mail = FindViewById<EditText>(Resource.Id.registroEmail);
@@ -63,7 +65,7 @@ namespace miA
 
                     if (tempPassword != "" && tempPassword != null)
                     {
-                        tempPassword = Datos.Sha1Hash(password.Text);
+                        tempPassword = Utilidades.Sha1Hash(password.Text);
                     }
 
 
@@ -90,6 +92,7 @@ namespace miA
                         editorPreferencias.Commit();
 
                         this.Finish();
+                        OverridePendingTransition(0, 0);
 
                     }
                     else
@@ -144,7 +147,7 @@ namespace miA
                 resutlado = "Digita un teléfono de contacto.";
 
 
-            if (mail.Text == null || !Datos.EsCorreoElectronico(mail.Text) || mail.Text == "")
+            if (mail.Text == null || !Utilidades.EsCorreoElectronico(mail.Text) || mail.Text == "")
                 resutlado = "Digita tu correo electrónico.";
 
 
@@ -153,6 +156,11 @@ namespace miA
 
 
             return resutlado;
+        }
+
+        public override void OnBackPressed()
+        {
+            return;
         }
 
     }

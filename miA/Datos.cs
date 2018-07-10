@@ -32,36 +32,6 @@ namespace miA
             ServicePointManager.ServerCertificateValidationCallback += delegate { return true; };
         }
 
-        public static bool EsCorreoElectronico(string correo)
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(correo);
-                return addr.Address == correo;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public static string Sha1Hash(string input)
-        {
-            using (SHA1Managed sha1 = new SHA1Managed())
-            {
-                var hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
-                var sb = new StringBuilder(hash.Length * 2);
-
-                foreach (byte b in hash)
-                {
-                    // can be "x2" if you want lowercase
-                    sb.Append(b.ToString("X2"));
-                }
-
-                return sb.ToString();
-            }
-        }
-
 
         private static JsonValue HttpWsRequestSync(HttpWebRequest request)
         {
@@ -143,7 +113,7 @@ namespace miA
             // Create an HTTP web request using the URL:
             string cadenaDeParametros = "";
             cadenaDeParametros += "&correo=" + email;
-            cadenaDeParametros += "&password=" + Sha1Hash(password);
+            cadenaDeParametros += "&password=" + Utilidades.Sha1Hash(password);
             cadenaDeParametros += "&versionApp=" + Datos.versionApp;
 
 
@@ -201,6 +171,34 @@ namespace miA
             return HttpWsRequestSync(request);
         }
 
+
+        public static JsonValue saveUserResources(Dictionary<string, string> data)
+        {
+            // Create an HTTP web request using the URL:
+            string cadenaDeParametros = "";
+
+            cadenaDeParametros += "&idUsuario=" + Datos.idUsuario;
+            cadenaDeParametros += "&token=" + Datos.token;
+            cadenaDeParametros += "&versionApp=" + Datos.versionApp;
+
+            Encoding iso = Encoding.GetEncoding("ISO-8859-1");
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(Datos.registerAndAuthenticationWebServiceUrl + "resetPassword2" + cadenaDeParametros));
+
+            var postData = "rdJson = "+data["rdJson"];
+            var encodedPostData = Encoding.ASCII.GetBytes(postData);
+
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = encodedPostData.Length;
+
+            using (var stream = request.GetRequestStream())
+            {
+                stream.Write(encodedPostData, 0, encodedPostData.Length);
+            }
+
+
+            return HttpWsRequestSync(request);
+        }
 
     }
 }
