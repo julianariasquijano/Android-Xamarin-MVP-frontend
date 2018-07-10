@@ -19,7 +19,7 @@ namespace miA
         public ResourceTypes type = ResourceTypes.Group;
 
         [DataMember]
-        public IList<ResourceDefinition> children { get; set; }
+        public List<ResourceDefinition> children { get; set; }
 
         public ResourceDefinition()
         {

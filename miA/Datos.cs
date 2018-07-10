@@ -182,9 +182,9 @@ namespace miA
             cadenaDeParametros += "&versionApp=" + Datos.versionApp;
 
             Encoding iso = Encoding.GetEncoding("ISO-8859-1");
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(Datos.registerAndAuthenticationWebServiceUrl + "resetPassword2" + cadenaDeParametros));
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(Datos.sessionDataWebServiceUrl + "saveUserResources" + cadenaDeParametros));
 
-            var postData = "rdJson = "+data["rdJson"];
+            var postData = "resources="+data["rdJson"];
             var encodedPostData = Encoding.ASCII.GetBytes(postData);
 
             request.Method = "POST";

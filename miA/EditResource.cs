@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Json;
+using System.Threading;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -66,6 +68,14 @@ namespace miA
                         parentNode.children.Add(rd);
                       
                     }
+
+                    var datos = new Dictionary<string, string>
+                    {
+                        ["rdJson"] = ResourceDefinition.ToJson(Information.mainRd)
+                    };
+                    JsonValue resultado = Datos.saveUserResources(datos);
+
+
                     Finish();
                     OverridePendingTransition(0, 0);  
 
@@ -117,6 +127,13 @@ namespace miA
                     break;
                 }
             }
+
+            var datos = new Dictionary<string, string>
+            {
+                ["rdJson"] = ResourceDefinition.ToJson(Information.mainRd)
+            };
+
+            JsonValue resultado = Datos.saveUserResources(datos);
 
 
             Intent intent = new Intent(this, typeof(ResourceView));

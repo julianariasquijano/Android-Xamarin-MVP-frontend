@@ -39,7 +39,10 @@
         p:layout_height="wrap_content"
         p:id="@+id/mensajeRegistro"
         p:textStyle="bold"
-        p:gravity="center" />
+        p:gravity="center"
+        p:text="Si No deseas cambiar tu contraseña, dejala en blanco."
+        p:visibility="invisible"
+        p:layout_margin="5dp" />
     <EditText
         p:inputType="text"
         p:layout_width="match_parent"
@@ -71,8 +74,8 @@
         p:id="@+id/registroPasswordCheck"
         p:hint="Repetir Contraseña" />
     <Button
-        p:text="Continuar"
         p:layout_width="match_parent"
         p:layout_height="wrap_content"
-        p:id="@+id/registroButtonContinue" />
+        p:id="@+id/registroButtonContinue"
+        p:text="Guardar" />
 </LinearLayout>

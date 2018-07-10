@@ -28,7 +28,7 @@ namespace miA
             var mail = FindViewById<EditText>(Resource.Id.registroEmail);
             var telefono = FindViewById<EditText>(Resource.Id.registroTelefono);
 
-            FindViewById<TextView>(Resource.Id.mensajeRegistro).Text="Si No deseas cambiar tu contraseña, dejala en blanco.";
+            FindViewById<TextView>(Resource.Id.mensajeRegistro).Visibility=Android.Views.ViewStates.Visible;
 
             JsonValue resultado = Datos.LlamarWsSync(Datos.sessionDataWebServiceUrl+"traerRegistro",Datos.idUsuario);
 

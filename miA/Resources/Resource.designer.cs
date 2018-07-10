@@ -2149,26 +2149,26 @@ namespace miA
 			// aapt resource value: 0x7f020057
 			public const int avd_hide_password = 2130837591;
 			
-			// aapt resource value: 0x7f02007e
-			public const int avd_hide_password_1 = 2130837630;
-			
 			// aapt resource value: 0x7f02007f
-			public const int avd_hide_password_2 = 2130837631;
+			public const int avd_hide_password_1 = 2130837631;
 			
 			// aapt resource value: 0x7f020080
-			public const int avd_hide_password_3 = 2130837632;
+			public const int avd_hide_password_2 = 2130837632;
+			
+			// aapt resource value: 0x7f020081
+			public const int avd_hide_password_3 = 2130837633;
 			
 			// aapt resource value: 0x7f020058
 			public const int avd_show_password = 2130837592;
 			
-			// aapt resource value: 0x7f020081
-			public const int avd_show_password_1 = 2130837633;
-			
 			// aapt resource value: 0x7f020082
-			public const int avd_show_password_2 = 2130837634;
+			public const int avd_show_password_1 = 2130837634;
 			
 			// aapt resource value: 0x7f020083
-			public const int avd_show_password_3 = 2130837635;
+			public const int avd_show_password_2 = 2130837635;
+			
+			// aapt resource value: 0x7f020084
+			public const int avd_show_password_3 = 2130837636;
 			
 			// aapt resource value: 0x7f020059
 			public const int back = 2130837593;
@@ -2251,11 +2251,11 @@ namespace miA
 			// aapt resource value: 0x7f020073
 			public const int notification_icon_background = 2130837619;
 			
-			// aapt resource value: 0x7f02007c
-			public const int notification_template_icon_bg = 2130837628;
-			
 			// aapt resource value: 0x7f02007d
-			public const int notification_template_icon_low_bg = 2130837629;
+			public const int notification_template_icon_bg = 2130837629;
+			
+			// aapt resource value: 0x7f02007e
+			public const int notification_template_icon_low_bg = 2130837630;
 			
 			// aapt resource value: 0x7f020074
 			public const int notification_tile_bg = 2130837620;
@@ -2276,10 +2276,13 @@ namespace miA
 			public const int resource = 2130837625;
 			
 			// aapt resource value: 0x7f02007a
-			public const int stats = 2130837626;
+			public const int RoundedCorner = 2130837626;
 			
 			// aapt resource value: 0x7f02007b
-			public const int userData = 2130837627;
+			public const int stats = 2130837627;
+			
+			// aapt resource value: 0x7f02007c
+			public const int userData = 2130837628;
 			
 			static Drawable()
 			{
