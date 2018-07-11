@@ -162,6 +162,24 @@ namespace miA
 
                 };
 
+                var myClientsButton = FindViewById<Button>(Resource.Id.myClientsButton);
+                myClientsButton.Click += (sender, e) => {
+
+                    if (Information.mainCd == null)
+                    {
+                        Information.PopulateClients();
+                    }
+
+
+                    var intent = new Intent(this, typeof(ClientView));
+                    intent.PutExtra("json", ClientDefinition.ToJson(Information.mainCd));
+                    intent.PutExtra("start", "");
+                    StartActivity(intent);
+                    OverridePendingTransition(0, 0);
+
+
+                };
+
 
                 var userDataButton = FindViewById<Button>(Resource.Id.userDataButton);
                 userDataButton.Click += (sender, e) => {
@@ -181,6 +199,9 @@ namespace miA
                     editorPreferencias.PutString("token", "");
                     editorPreferencias.PutString("logged", "");
                     editorPreferencias.Commit();
+
+                    Information.mainCd = null;
+                    Information.mainRd = null;
 
                     var intent = new Intent(this, typeof(MainActivity));
                     StartActivity(intent);

@@ -7,13 +7,13 @@ using Android.Widget;
 
 namespace miA
 {
-    [Activity(Label = "Recurso")]
-    public class ResourceView : Activity
+    [Activity(Label = "Cliente")]
+    public class ClientView: Activity
     {
-        ResourceDefinition rd;
+        ClientDefinition cd;
         string json;
-        string parentResourceId;
-        string resourceId;
+        string parentClientId;
+        string clientId;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -21,7 +21,7 @@ namespace miA
             SetContentView(Resource.Layout.resourceView);
 
             var backButton = FindViewById<ImageButton>(Resource.Id.backButton);
-            backButton.Click +=(sender, e) => {
+            backButton.Click += (sender, e) => {
                 this.Finish();
                 //OverridePendingTransition(Resource.Animation.abc_slide_in_top, Resource.Animation.abc_slide_out_top);
                 OverridePendingTransition(0, 0);
@@ -38,17 +38,17 @@ namespace miA
 
 
             json = Intent.GetStringExtra("json");
-            rd = ResourceDefinition.FromJson(json);
+            cd = ClientDefinition.FromJson(json);
 
-            if (rd.type == ResourceTypes.Element)
+            if (cd.type == ClientTypes.Element)
             {
                 FindViewById<ImageButton>(Resource.Id.addButton).Visibility = ViewStates.Invisible;
             }
 
             var editButton = FindViewById<ImageButton>(Resource.Id.editButton);
             editButton.Click += (sender, e) => {
-                var intent = new Intent(this, typeof(EditResource));
-                intent.PutExtra("resourceId", resourceId);
+                var intent = new Intent(this, typeof(EditClient));
+                intent.PutExtra("clientId", clientId);
                 //StartActivity(intent);
                 StartActivityForResult(intent, 0);
                 OverridePendingTransition(0, 0);
@@ -57,68 +57,71 @@ namespace miA
             var addButton = FindViewById<ImageButton>(Resource.Id.addButton);
             addButton.Click += (sender, e) => {
 
-                var intent = new Intent(this, typeof(EditResource));
-                intent.PutExtra("resourceId", resourceId);
+                var intent = new Intent(this, typeof(EditClient));
+                intent.PutExtra("clientId", clientId);
                 intent.PutExtra("creating", "");
                 StartActivity(intent);
                 OverridePendingTransition(0, 0);
-                
+
             };
 
 
         }
 
-        protected override void OnResume(){
+        protected override void OnResume()
+        {
             base.OnResume();
             if (Intent.Extras.ContainsKey("start"))
             {
                 var editButton = FindViewById<ImageButton>(Resource.Id.editButton);
                 editButton.Visibility = ViewStates.Invisible;
-                resourceId = rd.name;
+                clientId = cd.name;
             }
             else
             {
-                parentResourceId = Intent.GetStringExtra("parentResourceId");
-                resourceId = parentResourceId + "--" + rd.name;
+                parentClientId = Intent.GetStringExtra("parentClientId");
+                clientId = parentClientId + "--" + cd.name;
             }
-            rd = ResourceDefinition.getNode(Information.mainRd, resourceId);
-            FindViewById<TextView>(Resource.Id.resourceLabel).Text = rd.name;
+            cd = ClientDefinition.getNode(Information.mainCd, clientId);
+            FindViewById<TextView>(Resource.Id.resourceLabel).Text = cd.name;
             PopulateButtons();
-            
+
         }
 
-        private void PopulateButtons(){
+        private void PopulateButtons()
+        {
             var resourceViewLayout = FindViewById<LinearLayout>(Resource.Id.resourceViewLayout);
             resourceViewLayout.RemoveAllViews();
-            foreach (var childRd in rd.children)
+            foreach (var childRd in cd.children)
             {
 
-                addLayoutButton(resourceViewLayout, ResourceDefinition.ToJson(childRd));
+                addLayoutButton(resourceViewLayout, ClientDefinition.ToJson(childRd));
 
             }
         }
 
 
 
-        private void addLayoutButton(LinearLayout linearLayout,string json){
-            var rdForButton = ResourceDefinition.FromJson(json);
+        private void addLayoutButton(LinearLayout linearLayout, string json)
+        {
+            var cdForButton = ClientDefinition.FromJson(json);
 
             var button = new Button(this.BaseContext);
             button.SetBackgroundColor(Color.Transparent);
             button.SetTextColor(Color.Black);
 
-            button.Text = rdForButton.name;
-            if (rdForButton.type == ResourceTypes.Group)
+            button.Text = cdForButton.name;
+            if (cdForButton.type == ClientTypes.Group)
             {
                 button.SetCompoundDrawablesWithIntrinsicBounds(Resource.Drawable.folder, 0, 0, 0);
             }
-            else button.SetCompoundDrawablesWithIntrinsicBounds(Resource.Drawable.resource, 0,0,0);
+            else button.SetCompoundDrawablesWithIntrinsicBounds(Resource.Drawable.resource, 0, 0, 0);
 
             button.Click += (sender, e) => {
 
-                var intent = new Intent(this, typeof(ResourceView));
+                var intent = new Intent(this, typeof(ClientView));
                 intent.PutExtra("json", json);
-                intent.PutExtra("parentResourceId", resourceId);
+                intent.PutExtra("parentClientId", clientId);
                 StartActivity(intent);
                 //OverridePendingTransition(Resource.Animation.abc_slide_in_top, Resource.Animation.abc_slide_out_top);
                 OverridePendingTransition(0, 0);
@@ -150,7 +153,5 @@ namespace miA
         {
             return;
         }
-
-
     }
 }

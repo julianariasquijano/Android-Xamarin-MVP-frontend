@@ -99,6 +99,7 @@ namespace miA
 
         }
 
+
         public static JsonValue LlamarWsSync(string ws, string var)
         {
             Encoding iso = Encoding.GetEncoding("ISO-8859-1");
@@ -196,6 +197,38 @@ namespace miA
                 stream.Write(encodedPostData, 0, encodedPostData.Length);
             }
 
+
+            return HttpWsRequestSync(request);
+        }
+
+        public static JsonValue saveUserClients(Dictionary<string, string> data)
+        {
+            // Create an HTTP web request using the URL:
+            string cadenaDeParametros = "";
+
+            cadenaDeParametros += "&idUsuario=" + Datos.idUsuario;
+            cadenaDeParametros += "&token=" + Datos.token;
+            cadenaDeParametros += "&versionApp=" + Datos.versionApp;
+
+            if (data.ContainsKey("mail"))
+            {
+                cadenaDeParametros += "&mail=" + data["mail"];
+            }
+
+            Encoding iso = Encoding.GetEncoding("ISO-8859-1");
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(Datos.sessionDataWebServiceUrl + "saveUserClients" + cadenaDeParametros));
+
+            var postData = "clients=" + data["cdJson"];
+            var encodedPostData = Encoding.ASCII.GetBytes(postData);
+
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = encodedPostData.Length;
+
+            using (var stream = request.GetRequestStream())
+            {
+                stream.Write(encodedPostData, 0, encodedPostData.Length);
+            }
 
             return HttpWsRequestSync(request);
         }

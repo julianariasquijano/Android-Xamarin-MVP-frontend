@@ -102,6 +102,9 @@
     <Compile Include="ResourceView.cs" />
     <Compile Include="EditResource.cs" />
     <Compile Include="Information.cs" />
+    <Compile Include="ClientDefinition.cs" />
+    <Compile Include="ClientView.cs" />
+    <Compile Include="EditClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -137,6 +140,7 @@
     <AndroidResource Include="Resources\drawable\add.png" />
     <AndroidResource Include="Resources\drawable\home.png" />
     <AndroidResource Include="Resources\drawable\RoundedCorner.xml" />
+    <AndroidResource Include="Resources\layout\EditClient.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\mipmap-hdpi\" />

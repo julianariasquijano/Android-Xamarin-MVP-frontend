@@ -7,6 +7,7 @@ namespace miA
     {
 
         public static ResourceDefinition mainRd;
+        public static ClientDefinition mainCd;
 
         public static void PopulateResources()
         {
@@ -23,20 +24,24 @@ namespace miA
                 else mainRd = ResourceDefinition.FromJson(rdJson);
             }
 
-
-            //mainRd.name = "Grupo Principal";
-            //mainRd.children.Add(new ResourceDefinition());
-            //mainRd.children[0].name = "RdTest1";
-            //mainRd.children[0].type = ResourceTypes.Element;
-
-
-            //mainRd.children.Add(new ResourceDefinition());
-            //mainRd.children[1].name = "RdTest2";
-            //mainRd.children[1].children.Add(new ResourceDefinition());
-            //mainRd.children[1].children[0].name = "RdTest2.1";
-            //mainRd.children[1].children.Add(new ResourceDefinition());
-            //mainRd.children[1].children[1].name = "RdTest2.2";
-            //mainRd.children[1].children[1].type = ResourceTypes.Element;
         }
+
+        public static void PopulateClients()
+        {
+
+            JsonValue resultado = Datos.LlamarWsSync(Datos.sessionDataWebServiceUrl + "getUserClients", Datos.idUsuario);
+
+            if ((string)resultado["status"] == "OK")
+            {
+                string cdJson = (string)resultado["clients"];
+                if (cdJson == "" || cdJson == null)
+                {
+                    mainCd = new ClientDefinition(); mainCd.name = "Grupo Principal";
+                }
+                else mainCd = ClientDefinition.FromJson(cdJson);
+            }
+
+        }
+
     }
 }

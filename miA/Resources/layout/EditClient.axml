@@ -39,9 +39,17 @@
         </LinearLayout>
     </LinearLayout>
     <EditText
-        p:id="@+id/resourceName"
+        p:id="@+id/clientName"
+        p:hint="Nombre"
         p:inputType="textCapSentences"
-        p:hint="Nombre del Elemento"
+        p:layout_width="match_parent"
+        p:layout_height="wrap_content"
+        p:layout_marginBottom="13dp" />
+    <EditText
+        p:id="@+id/clientMail"
+        p:inputType="textEmailAddress"
+        p:visibility="invisible"
+        p:hint="Corre Electrónico"
         p:layout_width="match_parent"
         p:layout_height="wrap_content"
         p:layout_marginBottom="13dp" />
@@ -54,15 +62,15 @@
             p:id="@+id/elementRadio"
             p:layout_width="wrap_content"
             p:layout_height="wrap_content"
-            p:text="Tipo: Recurso" />
+            p:text="Tipo: Ususario" />
         <RadioButton
             p:id="@+id/groupRadio"
             p:layout_width="wrap_content"
             p:layout_height="wrap_content"
-            p:text="Tipo : Carpeta Agrupadora de Recursos" />
+            p:text="Tipo : Carpeta Agrupadora de Usuarios" />
     </RadioGroup>
     <Button
-        p:id="@+id/resourceSaveButton"
+        p:id="@+id/saveButton"
         p:layout_width="match_parent"
         p:layout_height="wrap_content"
         p:layout_marginBottom="13dp"
