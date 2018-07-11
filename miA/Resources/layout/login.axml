@@ -6,42 +6,52 @@
     p:layout_height="match_parent"
     p:minWidth="25px"
     p:minHeight="25px">
-    <ImageView
-        p:src="@drawable/mialogo"
-        p:layout_width="wrap_content"
-        p:layout_height="wrap_content"
-        p:layout_gravity="center_horizontal"
-        p:padding="0px"
-        p:layout_margin="0px"
-        p:scaleType="fitCenter"
-        p:scaleX="0.5"
-        p:scaleY="0.5"
-        p:id="@+id/logo" />
-    <EditText
-        p:inputType="textEmailAddress"
+    <ScrollView
         p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:id="@+id/email"
-        p:hint="Correo" />
-    <EditText
-        p:inputType="textPassword"
-        p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:id="@+id/password"
-        p:hint="Contraseña" />
-    <Button
-        p:text="Continuar"
-        p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:id="@+id/buttonContinue" />
-    <Button
-        p:text="Recordar Contraseña"
-        p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:id="@+id/buttonRemember" />
-    <Button
-        p:text="Registrarse"
-        p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:id="@+id/buttonRegister" />
+        p:layout_height="match_parent">
+        <LinearLayout
+            p:orientation="vertical"
+            p:padding="20px"
+            p:layout_width="match_parent"
+            p:layout_height="match_parent">
+            <ImageView
+                p:src="@drawable/mialogo"
+                p:layout_width="wrap_content"
+                p:layout_height="wrap_content"
+                p:layout_gravity="center_horizontal"
+                p:padding="0px"
+                p:layout_margin="0px"
+                p:scaleType="fitCenter"
+                p:scaleX="0.5"
+                p:scaleY="0.5"
+                p:id="@+id/logo" />
+            <EditText
+                p:inputType="textEmailAddress"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:id="@+id/email"
+                p:hint="Correo" />
+            <EditText
+                p:inputType="textPassword"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:id="@+id/password"
+                p:hint="Contraseña" />
+            <Button
+                p:text="Continuar"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:id="@+id/buttonContinue" />
+            <Button
+                p:text="Recordar Contraseña"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:id="@+id/buttonRemember" />
+            <Button
+                p:text="Registrarse"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:id="@+id/buttonRegister" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

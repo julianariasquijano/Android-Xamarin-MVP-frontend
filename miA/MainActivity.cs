@@ -144,6 +144,27 @@ namespace miA
                 Datos.idUsuario = preferencias.GetString("idUsuario", null);
                 Datos.token = preferencias.GetString("token", null);
 
+
+                var foreignAgendasButton = FindViewById<Button>(Resource.Id.foreignAgendasButton);
+                foreignAgendasButton.Click += (sender, e) => {
+
+                    if (Information.mainRd == null)
+                    {
+                        Information.PopulateResources();
+                    }
+
+
+                    var intent = new Intent(this, typeof(ResourceView));
+                    intent.PutExtra("json", ResourceDefinition.ToJson(Information.mainRd));
+                    intent.PutExtra("start", "");
+                    StartActivity(intent);
+                    OverridePendingTransition(0, 0);
+
+
+                };
+
+
+
                 var myResourcesButton = FindViewById<Button>(Resource.Id.myResourcesButton);
                 myResourcesButton.Click += (sender, e) => {
 

@@ -38,41 +38,51 @@
                 p:src="@drawable/delete" />
         </LinearLayout>
     </LinearLayout>
-    <EditText
-        p:id="@+id/clientName"
-        p:hint="Nombre"
-        p:inputType="textCapSentences"
+    <ScrollView
         p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:layout_marginBottom="13dp" />
-    <EditText
-        p:id="@+id/clientMail"
-        p:inputType="textEmailAddress"
-        p:visibility="invisible"
-        p:hint="Corre Electrónico"
-        p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:layout_marginBottom="13dp" />
-    <RadioGroup
-        p:id="@+id/radioGroup"
-        p:layout_width="fill_parent"
-        p:layout_height="wrap_content"
-        p:orientation="vertical">
-        <RadioButton
-            p:id="@+id/elementRadio"
-            p:layout_width="wrap_content"
-            p:layout_height="wrap_content"
-            p:text="Tipo: Ususario" />
-        <RadioButton
-            p:id="@+id/groupRadio"
-            p:layout_width="wrap_content"
-            p:layout_height="wrap_content"
-            p:text="Tipo : Carpeta Agrupadora de Usuarios" />
-    </RadioGroup>
-    <Button
-        p:id="@+id/saveButton"
-        p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:layout_marginBottom="13dp"
-        p:text="Guardar" />
+        p:layout_height="match_parent">
+        <LinearLayout
+            p:orientation="vertical"
+            p:padding="20px"
+            p:layout_width="match_parent"
+            p:layout_height="match_parent">
+            <EditText
+                p:id="@+id/clientName"
+                p:hint="Nombre"
+                p:inputType="textCapSentences"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:layout_marginBottom="13dp" />
+            <EditText
+                p:id="@+id/clientMail"
+                p:inputType="textEmailAddress"
+                p:visibility="invisible"
+                p:hint="Corre Electrónico"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:layout_marginBottom="13dp" />
+            <RadioGroup
+                p:id="@+id/radioGroup"
+                p:layout_width="fill_parent"
+                p:layout_height="wrap_content"
+                p:orientation="vertical">
+                <RadioButton
+                    p:id="@+id/elementRadio"
+                    p:layout_width="wrap_content"
+                    p:layout_height="wrap_content"
+                    p:text="Tipo: Ususario" />
+                <RadioButton
+                    p:id="@+id/groupRadio"
+                    p:layout_width="wrap_content"
+                    p:layout_height="wrap_content"
+                    p:text="Tipo : Carpeta Agrupadora de Usuarios" />
+            </RadioGroup>
+            <Button
+                p:id="@+id/saveButton"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:layout_marginBottom="13dp"
+                p:text="Guardar" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

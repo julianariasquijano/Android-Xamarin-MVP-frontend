@@ -38,33 +38,43 @@
                 p:src="@drawable/delete" />
         </LinearLayout>
     </LinearLayout>
-    <EditText
-        p:id="@+id/resourceName"
-        p:inputType="textCapSentences"
-        p:hint="Nombre del Elemento"
+    <ScrollView
         p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:layout_marginBottom="13dp" />
-    <RadioGroup
-        p:id="@+id/radioGroup"
-        p:layout_width="fill_parent"
-        p:layout_height="wrap_content"
-        p:orientation="vertical">
-        <RadioButton
-            p:id="@+id/elementRadio"
-            p:layout_width="wrap_content"
-            p:layout_height="wrap_content"
-            p:text="Tipo: Recurso" />
-        <RadioButton
-            p:id="@+id/groupRadio"
-            p:layout_width="wrap_content"
-            p:layout_height="wrap_content"
-            p:text="Tipo : Carpeta Agrupadora de Recursos" />
-    </RadioGroup>
-    <Button
-        p:id="@+id/resourceSaveButton"
-        p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:layout_marginBottom="13dp"
-        p:text="Guardar" />
+        p:layout_height="match_parent">
+        <LinearLayout
+            p:orientation="vertical"
+            p:padding="20px"
+            p:layout_width="match_parent"
+            p:layout_height="match_parent">
+            <EditText
+                p:id="@+id/resourceName"
+                p:inputType="textCapSentences"
+                p:hint="Nombre del Elemento"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:layout_marginBottom="13dp" />
+            <RadioGroup
+                p:id="@+id/radioGroup"
+                p:layout_width="fill_parent"
+                p:layout_height="wrap_content"
+                p:orientation="vertical">
+                <RadioButton
+                    p:id="@+id/elementRadio"
+                    p:layout_width="wrap_content"
+                    p:layout_height="wrap_content"
+                    p:text="Tipo: Recurso" />
+                <RadioButton
+                    p:id="@+id/groupRadio"
+                    p:layout_width="wrap_content"
+                    p:layout_height="wrap_content"
+                    p:text="Tipo : Carpeta Agrupadora de Recursos" />
+            </RadioGroup>
+            <Button
+                p:id="@+id/resourceSaveButton"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:layout_marginBottom="13dp"
+                p:text="Guardar" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

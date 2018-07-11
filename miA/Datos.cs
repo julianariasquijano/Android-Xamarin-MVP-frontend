@@ -213,6 +213,8 @@ namespace miA
             if (data.ContainsKey("mail"))
             {
                 cadenaDeParametros += "&mail=" + data["mail"];
+                cadenaDeParametros += "&operation=" + data["operation"];
+
             }
 
             Encoding iso = Encoding.GetEncoding("ISO-8859-1");

@@ -33,49 +33,59 @@
             p:layout_gravity="right"
             p:gravity="right" />
     </LinearLayout>
-    <TextView
-        p:textAppearance="?android:attr/textAppearanceMedium"
+    <ScrollView
         p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:id="@+id/mensajeRegistro"
-        p:textStyle="bold"
-        p:gravity="center"
-        p:text="Si No deseas cambiar tu contraseña, dejala en blanco."
-        p:visibility="invisible"
-        p:layout_margin="5dp" />
-    <EditText
-        p:inputType="text"
-        p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:id="@+id/registroNombre"
-        p:hint="Nombre" />
-    <EditText
-        p:inputType="textEmailAddress"
-        p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:id="@+id/registroEmail"
-        p:hint="Correo" />
-    <EditText
-        p:inputType="number"
-        p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:id="@+id/registroTelefono"
-        p:hint="Teléfono" />
-    <EditText
-        p:inputType="textPassword"
-        p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:id="@+id/registroPassword"
-        p:hint="Contraseña" />
-    <EditText
-        p:inputType="textPassword"
-        p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:id="@+id/registroPasswordCheck"
-        p:hint="Repetir Contraseña" />
-    <Button
-        p:layout_width="match_parent"
-        p:layout_height="wrap_content"
-        p:id="@+id/registroButtonContinue"
-        p:text="Guardar" />
+        p:layout_height="match_parent">
+        <LinearLayout
+            p:orientation="vertical"
+            p:padding="20px"
+            p:layout_width="match_parent"
+            p:layout_height="match_parent">
+            <TextView
+                p:textAppearance="?android:attr/textAppearanceMedium"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:id="@+id/mensajeRegistro"
+                p:textStyle="bold"
+                p:gravity="center"
+                p:text="Si No deseas cambiar tu contraseña, dejala en blanco."
+                p:visibility="invisible"
+                p:layout_margin="5dp" />
+            <EditText
+                p:inputType="text"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:id="@+id/registroNombre"
+                p:hint="Nombre" />
+            <EditText
+                p:inputType="textEmailAddress"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:id="@+id/registroEmail"
+                p:hint="Correo" />
+            <EditText
+                p:inputType="number"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:id="@+id/registroTelefono"
+                p:hint="Teléfono" />
+            <EditText
+                p:inputType="textPassword"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:id="@+id/registroPassword"
+                p:hint="Contraseña" />
+            <EditText
+                p:inputType="textPassword"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:id="@+id/registroPasswordCheck"
+                p:hint="Repetir Contraseña" />
+            <Button
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:id="@+id/registroButtonContinue"
+                p:text="Guardar" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -33,13 +33,7 @@ namespace miA
             {
                 cd = ClientDefinition.getNode(Information.mainCd, clientId);
                 FindViewById<EditText>(Resource.Id.clientName).Text = cd.name;
-                FindViewById<EditText>(Resource.Id.clientMail).Text = cd.mail;
                 FindViewById<RadioGroup>(Resource.Id.radioGroup).Visibility = ViewStates.Invisible;
-
-                if (cd.type == ClientTypes.Element)
-                {
-                    FindViewById<EditText>(Resource.Id.clientMail).Visibility = ViewStates.Visible;
-                }
 
             }
 
@@ -54,7 +48,7 @@ namespace miA
             var deleteButton = FindViewById<ImageButton>(Resource.Id.deleteButton);
             deleteButton.Click += (sender, e) =>
             {
-                Utilidades.ConfirmDialog(this, "Atención", "Eliminar este elemento y su contenido ?", "SI", "NO");
+                Utilidades.ConfirmDialog(this, "Atención", "Eliminar este elemento ?", "SI", "NO");
 
             };
 
@@ -65,10 +59,10 @@ namespace miA
                 if (validationResult == "")
                 {
                     cd.name = FindViewById<EditText>(Resource.Id.clientName).Text;
-                    cd.mail = FindViewById<EditText>(Resource.Id.clientMail).Text;
+
                     if (!editing)
                     {
-
+                        cd.mail = FindViewById<EditText>(Resource.Id.clientMail).Text;
                         cd.type = elementType;
                         var parentNode = ClientDefinition.getNode(Information.mainCd, clientId);
                         parentNode.children.Add(cd);
@@ -83,6 +77,8 @@ namespace miA
                     if (!editing)
                     {
                         datos["mail"] = cd.mail;
+                        datos["operation"] = "add";
+
                     }
 
                     JsonValue resultado = Datos.saveUserClients(datos);
@@ -137,6 +133,14 @@ namespace miA
 
         public override void PositiveConfirm()
         {
+            if (cd.type == ClientTypes.Group)
+            {
+                if (cd.children.Count > 0)
+                {
+                    Utilidades.showMessage(this,"Antención","Un grupo de Usuarios primero debe estar vacío antes de eliminarlo.","OK");
+                    return;
+                }
+            }
 
             string parentId = ClientDefinition.getParentNodeId(Information.mainCd, clientId);
             var parentRd = ClientDefinition.getNode(Information.mainCd, parentId);
@@ -152,7 +156,9 @@ namespace miA
 
             var datos = new Dictionary<string, string>
             {
-                ["cdJson"] = ClientDefinition.ToJson(Information.mainCd)
+                ["cdJson"] = ClientDefinition.ToJson(Information.mainCd),
+                ["mail"] = cd.mail,
+                ["operation"] = "remove"
             };
 
             JsonValue resultado = Datos.saveUserClients(datos);
