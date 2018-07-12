@@ -2,23 +2,22 @@
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
-using Android.Views;
 using Android.Widget;
 
 namespace miA
 {
-    [Activity(Label = "Cliente")]
-    public class ClientView: Activity
+    [Activity(Label = "Recursos Externos")]
+    public class ForeignResourceView : Activity
     {
-        ClientDefinition cd;
+        ResourceDefinition rd;
         string json;
-        string parentClientId;
-        string clientId;
+        string parentResourceId;
+        string resourceId;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.resourceView);
+            SetContentView(Resource.Layout.ForeignResourceView);
 
             var backButton = FindViewById<ImageButton>(Resource.Id.backButton);
             backButton.Click += (sender, e) => {
@@ -38,33 +37,7 @@ namespace miA
 
 
             json = Intent.GetStringExtra("json");
-            cd = ClientDefinition.FromJson(json);
-
-            if (cd.type == ClientTypes.Element)
-            {
-                FindViewById<ImageButton>(Resource.Id.addButton).Visibility = ViewStates.Invisible;
-            }
-
-            var editButton = FindViewById<ImageButton>(Resource.Id.editButton);
-            editButton.Click += (sender, e) => {
-                var intent = new Intent(this, typeof(EditClient));
-                intent.PutExtra("clientId", clientId);
-                //StartActivity(intent);
-                StartActivityForResult(intent, 0);
-                OverridePendingTransition(0, 0);
-            };
-
-            var addButton = FindViewById<ImageButton>(Resource.Id.addButton);
-            addButton.Click += (sender, e) => {
-
-                var intent = new Intent(this, typeof(EditClient));
-                intent.PutExtra("clientId", clientId);
-                intent.PutExtra("creating", "");
-                StartActivity(intent);
-                OverridePendingTransition(0, 0);
-
-            };
-
+            rd = ResourceDefinition.FromJson(json);
 
         }
 
@@ -73,17 +46,15 @@ namespace miA
             base.OnResume();
             if (Intent.Extras.ContainsKey("start"))
             {
-                var editButton = FindViewById<ImageButton>(Resource.Id.editButton);
-                editButton.Visibility = ViewStates.Invisible;
-                clientId = cd.name;
+                resourceId = rd.name;
             }
             else
             {
-                parentClientId = Intent.GetStringExtra("parentClientId");
-                clientId = parentClientId + "--" + cd.name;
+                parentResourceId = Intent.GetStringExtra("parentResourceId");
+                resourceId = parentResourceId + "--" + rd.name;
             }
-            cd = ClientDefinition.getNode(Information.mainCd, clientId);
-            FindViewById<TextView>(Resource.Id.resourceLabel).Text = cd.name;
+            rd = ResourceDefinition.getNode(Information.foreignRd, resourceId);
+            FindViewById<TextView>(Resource.Id.resourceLabel).Text = rd.name;
             PopulateButtons();
 
         }
@@ -92,10 +63,10 @@ namespace miA
         {
             var resourceViewLayout = FindViewById<LinearLayout>(Resource.Id.resourceViewLayout);
             resourceViewLayout.RemoveAllViews();
-            foreach (var childRd in cd.children)
+            foreach (var childRd in rd.children)
             {
 
-                addLayoutButton(resourceViewLayout, ClientDefinition.ToJson(childRd));
+                addLayoutButton(resourceViewLayout, ResourceDefinition.ToJson(childRd));
 
             }
         }
@@ -104,14 +75,14 @@ namespace miA
 
         private void addLayoutButton(LinearLayout linearLayout, string json)
         {
-            var cdForButton = ClientDefinition.FromJson(json);
+            var rdForButton = ResourceDefinition.FromJson(json);
 
             var button = new Button(this.BaseContext);
             button.SetBackgroundColor(Color.Transparent);
             button.SetTextColor(Color.Black);
 
-            button.Text = cdForButton.name;
-            if (cdForButton.type == ClientTypes.Group)
+            button.Text = rdForButton.name;
+            if (rdForButton.type == ResourceTypes.Group)
             {
                 button.SetCompoundDrawablesWithIntrinsicBounds(Resource.Drawable.folder, 0, 0, 0);
             }
@@ -119,12 +90,26 @@ namespace miA
 
             button.Click += (sender, e) => {
 
-                var intent = new Intent(this, typeof(ClientView));
-                intent.PutExtra("json", json);
-                intent.PutExtra("parentClientId", clientId);
-                StartActivity(intent);
-                //OverridePendingTransition(Resource.Animation.abc_slide_in_top, Resource.Animation.abc_slide_out_top);
-                OverridePendingTransition(0, 0);
+                if (rdForButton.type == ResourceTypes.Group)
+                {
+                    var intent = new Intent(this, typeof(ForeignResourceView));
+
+                    intent.PutExtra("json", json);
+                    intent.PutExtra("parentResourceId", resourceId);
+                    StartActivity(intent);
+                    OverridePendingTransition(0, 0);
+                }
+                else
+                {
+                    var intent = new Intent(this, typeof(AgendaView));
+
+                    intent.PutExtra("json", json);
+                    StartActivity(intent);
+                    OverridePendingTransition(0, 0);
+                }
+
+
+
 
             };
 
@@ -154,5 +139,7 @@ namespace miA
             Finish();
             OverridePendingTransition(0, 0);
         }
+
+
     }
 }

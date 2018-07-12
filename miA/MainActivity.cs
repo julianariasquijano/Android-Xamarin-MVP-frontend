@@ -73,7 +73,6 @@ namespace miA
                                 password.Text = "";
                                 var intent = new Intent(this, typeof(MainActivity));
                                 StartActivity(intent);
-
                                 this.Finish();
                             }
                             else
@@ -111,6 +110,7 @@ namespace miA
                     ActiveLoginButtons();
                 };
 
+                FindViewById<EditText>(Resource.Id.password).EditorAction += (sender, e) => { buttonContinue.PerformClick(); };
 
                 buttonRemember.Click += (sender, e) => {
 
@@ -121,6 +121,7 @@ namespace miA
                         var intent = new Intent(this, typeof(RememberPassword));
                         intent.PutExtra("mail", mail);
                         StartActivity(intent);
+                        OverridePendingTransition(0, 0);
                     }
                     else Utilidades.showMessage(this, "Antención", "Para continuar, digita el correo electrónico registrado.", "OK");
 
@@ -131,7 +132,7 @@ namespace miA
                 
                     var intent = new Intent(this, typeof(Registro));
                     StartActivity(intent);
-                
+                    OverridePendingTransition(0, 0);
                 
                 };
 
@@ -144,25 +145,16 @@ namespace miA
                 Datos.idUsuario = preferencias.GetString("idUsuario", null);
                 Datos.token = preferencias.GetString("token", null);
 
-
                 var foreignAgendasButton = FindViewById<Button>(Resource.Id.foreignAgendasButton);
                 foreignAgendasButton.Click += (sender, e) => {
 
-                    if (Information.mainRd == null)
-                    {
-                        Information.PopulateResources();
-                    }
+                    Information.PopulateForeignAgendas();
 
-
-                    var intent = new Intent(this, typeof(ResourceView));
-                    intent.PutExtra("json", ResourceDefinition.ToJson(Information.mainRd));
-                    intent.PutExtra("start", "");
+                    var intent = new Intent(this, typeof(ForeignAgendas));
                     StartActivity(intent);
                     OverridePendingTransition(0, 0);
 
-
                 };
-
 
 
                 var myResourcesButton = FindViewById<Button>(Resource.Id.myResourcesButton);
@@ -172,7 +164,6 @@ namespace miA
                     {
                         Information.PopulateResources();
                     }
-
 
                     var intent = new Intent(this, typeof(ResourceView));
                     intent.PutExtra("json", ResourceDefinition.ToJson(Information.mainRd));
@@ -198,9 +189,7 @@ namespace miA
                     StartActivity(intent);
                     OverridePendingTransition(0, 0);
 
-
                 };
-
 
                 var userDataButton = FindViewById<Button>(Resource.Id.userDataButton);
                 userDataButton.Click += (sender, e) => {
@@ -226,13 +215,9 @@ namespace miA
 
                     var intent = new Intent(this, typeof(MainActivity));
                     StartActivity(intent);
-
                     this.Finish();
 
                 };
-
-
-
 
             }
 

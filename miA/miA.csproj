@@ -105,6 +105,9 @@
     <Compile Include="ClientDefinition.cs" />
     <Compile Include="ClientView.cs" />
     <Compile Include="EditClient.cs" />
+    <Compile Include="ForeignAgendas.cs" />
+    <Compile Include="ForeignResourceView.cs" />
+    <Compile Include="AgendaView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -141,6 +144,9 @@
     <AndroidResource Include="Resources\drawable\home.png" />
     <AndroidResource Include="Resources\drawable\RoundedCorner.xml" />
     <AndroidResource Include="Resources\layout\EditClient.axml" />
+    <AndroidResource Include="Resources\layout\ForeignAgendas.axml" />
+    <AndroidResource Include="Resources\layout\ForeignResourceView.axml" />
+    <AndroidResource Include="Resources\layout\AgendaView.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\mipmap-hdpi\" />

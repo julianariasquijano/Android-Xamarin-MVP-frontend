@@ -24,6 +24,7 @@ namespace miA
             var backButton = FindViewById<ImageButton>(Resource.Id.backButton);
             backButton.Click += (sender, e) => {
                 this.Finish();
+                OverridePendingTransition(0, 0);
             };
 
             var sendCodeButton = FindViewById<Button>(Resource.Id.sendCodeButton);
@@ -161,6 +162,12 @@ namespace miA
             }
 
             return resultado;
+        }
+
+        public override void OnBackPressed()
+        {
+            Finish();
+            OverridePendingTransition(0, 0);
         }
 
     }

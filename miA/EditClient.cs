@@ -178,7 +178,8 @@ namespace miA
 
         public override void OnBackPressed()
         {
-            return;
+            Finish();
+            OverridePendingTransition(0, 0);
         }
     }
 }

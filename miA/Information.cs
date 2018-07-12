@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Json;
 
 namespace miA
@@ -7,7 +8,9 @@ namespace miA
     {
 
         public static ResourceDefinition mainRd;
+        public static ResourceDefinition foreignRd;
         public static ClientDefinition mainCd;
+        public static List<ForeignAgenda> foreignAgendas; 
 
         public static void PopulateResources()
         {
@@ -28,7 +31,7 @@ namespace miA
 
         public static void PopulateClients()
         {
-
+            foreignAgendas = new List<ForeignAgenda>();
             JsonValue resultado = Datos.LlamarWsSync(Datos.sessionDataWebServiceUrl + "getUserClients", Datos.idUsuario);
 
             if ((string)resultado["status"] == "OK")
@@ -43,5 +46,52 @@ namespace miA
 
         }
 
+        public static void PopulateForeignAgendas()
+        {
+            
+            foreignAgendas = new List<ForeignAgenda>();
+
+            JsonValue resultado = Datos.LlamarWsSync(Datos.sessionDataWebServiceUrl + "getUserForeignAgendas", Datos.idUsuario);
+
+            if ((string)resultado["status"] == "OK")
+            {
+                //string json = (string)resultado["foreignAgendas"];
+                JsonValue foreignAgendasJson = resultado["foreignAgendas"];
+
+                if (foreignAgendasJson != null)
+                {
+                    foreach (JsonValue foreignAgendaData in foreignAgendasJson)
+                    {
+                        var foreignAgenda = new ForeignAgenda();
+                        foreignAgenda.name = (string)foreignAgendaData["name"];
+                        foreignAgenda.phone = (string)foreignAgendaData["phone"];
+                        foreignAgenda.country = (int)foreignAgendaData["country"];
+                        foreignAgenda.pdb = (string)foreignAgendaData["pdb"];
+                        foreignAgenda.idPdb = (int)foreignAgendaData["idPdb"];
+
+                        foreignAgendas.Add(foreignAgenda);
+
+                    }
+                }
+
+            }
+
+        }
+
     }
+
+    public class ForeignAgenda{
+        public string name;
+        public string phone;
+        public int country;
+        public string pdb;
+        public int idPdb;
+
+        public override string ToString()
+        {
+            return name;
+        }
+
+    }
+
 }

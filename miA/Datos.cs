@@ -235,5 +235,26 @@ namespace miA
             return HttpWsRequestSync(request);
         }
 
+
+        public static JsonValue getForeignAgendaResources(Dictionary<string, string> data)
+        {
+
+            // Create an HTTP web request using the URL:
+            string cadenaDeParametros = "";
+
+            cadenaDeParametros += "&pdb=" + data["pdb"];
+            cadenaDeParametros += "&idPdb=" + data["idPdb"];
+
+            cadenaDeParametros += "&idUsuario=" + Datos.idUsuario;
+            cadenaDeParametros += "&token=" + Datos.token;
+            cadenaDeParametros += "&versionApp=" + Datos.versionApp;
+
+
+            Encoding iso = Encoding.GetEncoding("ISO-8859-1");
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(Datos.sessionDataWebServiceUrl + "getForeignAgendaResources" + cadenaDeParametros));
+            return HttpWsRequestSync(request);
+        }
+
+
     }
 }
