@@ -49,7 +49,6 @@ namespace miA
             editButton.Click += (sender, e) => {
                 var intent = new Intent(this, typeof(EditResource));
                 intent.PutExtra("resourceId", resourceId);
-                //StartActivity(intent);
                 StartActivityForResult(intent, 0);
                 OverridePendingTransition(0, 0);
             };

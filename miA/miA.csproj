@@ -108,6 +108,7 @@
     <Compile Include="ForeignAgendas.cs" />
     <Compile Include="ForeignResourceView.cs" />
     <Compile Include="AgendaView.cs" />
+    <Compile Include="Appointment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -147,6 +148,7 @@
     <AndroidResource Include="Resources\layout\ForeignAgendas.axml" />
     <AndroidResource Include="Resources\layout\ForeignResourceView.axml" />
     <AndroidResource Include="Resources\layout\AgendaView.axml" />
+    <AndroidResource Include="Resources\layout\Appointment.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\mipmap-hdpi\" />

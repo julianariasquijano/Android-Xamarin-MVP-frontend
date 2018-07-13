@@ -29,23 +29,6 @@ namespace miA
         {
 
             base.OnCreate(savedInstanceState);
-            //SetContentView(Resource.Layout.AgendaView);
-
-            //var backButton = FindViewById<ImageButton>(Resource.Id.backButton);
-            //backButton.Click += (sender, e) => {
-            //    this.Finish();
-            //    OverridePendingTransition(0, 0);
-            //};
-
-            //var homeButton = FindViewById<ImageButton>(Resource.Id.homeButton);
-            //homeButton.Click += (sender, e) => {
-            //    var intent = new Intent(this, typeof(MainActivity));
-            //    intent.AddFlags(ActivityFlags.ClearTop);
-            //    StartActivity(intent);
-            //    OverridePendingTransition(0, 0);
-
-            //};
-
 
             schedule = new SfSchedule(this);
             schedule.Locale = new Locale("es", "ES");
@@ -65,16 +48,25 @@ namespace miA
                 }
                 else if (schedule.ScheduleView == ScheduleView.DayView)
                 {
-                    schedule.ScheduleView = ScheduleView.MonthView;
+                    string horaCita ="Año: "+ e.Calendar.Get(CalendarField.Year).ToString() +
+                                               " Mes: " + (Int32.Parse(e.Calendar.Get(CalendarField.Month).ToString()) + 1).ToString() +
+                                               " Dia: " + e.Calendar.Get(CalendarField.DayOfMonth).ToString() +
+                                               " Hora: " + e.Calendar.Get(CalendarField.HourOfDay).ToString();
+                    //Utilidades.showMessage(this,"",horaCita,"OK");
+
+                    var intent = new Intent(this, typeof(Appointment));
+                    intent.PutExtra("year", e.Calendar.Get(CalendarField.Year).ToString());
+                    intent.PutExtra("month", (Int32.Parse(e.Calendar.Get(CalendarField.Month).ToString()) + 1).ToString());
+                    intent.PutExtra("day", e.Calendar.Get(CalendarField.DayOfMonth).ToString());
+                    intent.PutExtra("hour", e.Calendar.Get(CalendarField.HourOfDay).ToString());
+                    StartActivityForResult(intent, 0);
+                    OverridePendingTransition(0, 0);
+
                 }
 
             };
-            schedule.AddView(new Button(this));
-            //var layout = FindViewById<LinearLayout>(Resource.Id.scheduleViewLayout);
-            //layout.AddView(schedule);
 
             SetContentView(schedule);
-
 
         }
 
