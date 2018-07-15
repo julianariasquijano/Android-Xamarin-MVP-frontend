@@ -10,7 +10,7 @@ namespace miA
     public class ForeignResourceView : Activity
     {
         ResourceDefinition rd;
-        string json;
+        string rdJson;
         string parentResourceId;
         string resourceId;
 
@@ -36,8 +36,8 @@ namespace miA
             };
 
 
-            json = Intent.GetStringExtra("json");
-            rd = ResourceDefinition.FromJson(json);
+            rdJson = Intent.GetStringExtra("rdJson");
+            rd = ResourceDefinition.FromJson(rdJson);
 
         }
 
@@ -94,7 +94,7 @@ namespace miA
                 {
                     var intent = new Intent(this, typeof(ForeignResourceView));
 
-                    intent.PutExtra("json", json);
+                    intent.PutExtra("rdJson", json);
                     intent.PutExtra("parentResourceId", resourceId);
                     StartActivity(intent);
                     OverridePendingTransition(0, 0);
@@ -103,13 +103,10 @@ namespace miA
                 {
                     var intent = new Intent(this, typeof(AgendaView));
 
-                    intent.PutExtra("json", json);
+                    intent.PutExtra("rdJson", json);
                     StartActivity(intent);
                     OverridePendingTransition(0, 0);
                 }
-
-
-
 
             };
 

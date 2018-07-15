@@ -5,10 +5,11 @@ using Android.Content;
 using Android.Widget;
 using Android.Graphics;
 using System.Json;
+using Android.Content.PM;
 
 namespace miA
 {
-    [Activity(Label = "miA", MainLauncher = true)]
+    [Activity(Label = "miA", MainLauncher = true, ConfigurationChanges = ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait )]
     public class MainActivity : Activity
     {
 

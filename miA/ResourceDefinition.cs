@@ -16,6 +16,9 @@ namespace miA
         public string name = "";
 
         [DataMember]
+        public int minutes;
+
+        [DataMember]
         public ResourceTypes type = ResourceTypes.Group;
 
         [DataMember]

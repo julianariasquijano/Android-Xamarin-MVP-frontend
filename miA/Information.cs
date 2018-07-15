@@ -10,7 +10,8 @@ namespace miA
         public static ResourceDefinition mainRd;
         public static ResourceDefinition foreignRd;
         public static ClientDefinition mainCd;
-        public static List<ForeignAgenda> foreignAgendas; 
+        public static List<ForeignAgenda> foreignAgendas;
+        public static ForeignAgenda seletedForeignAgenda;
 
         public static void PopulateResources()
         {

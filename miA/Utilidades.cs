@@ -104,6 +104,25 @@ namespace miA
             }
         }
 
+        public static string getFormattedHour(string hour, string minute)
+        {
+            if (hour.Length == 1) hour = "0" + hour;
+            if (minute.Length == 1) minute = "0" + minute;
+            return  hour + ":" + minute;
+        }
+
+        public static string getFormattedDate(string year,string month, string day)
+        {
+            if (month.Length==1)month = "0" + month;
+            if (day.Length == 1) day = "0" + day;
+            return year + "-" + month + "-" + day;
+        }
+
+        public static string dateCheckCero(string number)
+        {
+            if (number.Length == 1) return number = "0" + number; else return number;
+        }
+
     }
 
 

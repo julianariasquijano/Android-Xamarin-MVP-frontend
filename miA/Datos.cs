@@ -255,6 +255,26 @@ namespace miA
             return HttpWsRequestSync(request);
         }
 
+        public static JsonValue saveForeginAppointment(Dictionary<string, string> data)
+        {
+            // Create an HTTP web request using the URL:
+            string cadenaDeParametros = "";
+
+            cadenaDeParametros += "&idUsuario=" + Datos.idUsuario;
+            cadenaDeParametros += "&token=" + Datos.token;
+            cadenaDeParametros += "&resourceName=" + data["resourceName"];
+            cadenaDeParametros += "&comment=" + data["comment"];
+            cadenaDeParametros += "&startTime=" + data["startTime"];
+            cadenaDeParametros += "&endTime=" + data["endTime"];
+            cadenaDeParametros += "&faPdb=" + data["faPdb"];
+            cadenaDeParametros += "&faIdPdb=" + data["faIdPdb"];
+
+            Encoding iso = Encoding.GetEncoding("ISO-8859-1");
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(Datos.sessionDataWebServiceUrl + "saveForeginAppointment" + cadenaDeParametros));
+
+            return HttpWsRequestSync(request);
+        }
 
     }
+
 }

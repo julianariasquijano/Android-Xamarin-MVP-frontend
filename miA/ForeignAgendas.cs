@@ -58,8 +58,10 @@ namespace miA
                     Information.foreignRd = ResourceDefinition.FromJson(rdJson);
 
                     var intent = new Intent(this, typeof(ForeignResourceView));
-                    intent.PutExtra("json", rdJson);
+                    intent.PutExtra("rdJson", rdJson);
                     intent.PutExtra("start", "");
+                    Information.seletedForeignAgenda = foreignAgenda;
+
                     StartActivity(intent);
                     OverridePendingTransition(0, 0);
 

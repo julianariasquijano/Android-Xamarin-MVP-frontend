@@ -33,57 +33,154 @@
             p:gravity="right" />
     </LinearLayout>
     <TextView
+        p:textAppearance="?android:attr/textAppearanceMedium"
+        p:gravity="center"
+        p:layout_margin="5dp"
         p:layout_width="wrap_content"
         p:layout_height="wrap_content"
         p:layout_gravity="center_horizontal"
-        p:text="AGENDAMIENTO DE RECURSO"
-        p:textSize="20sp" />
-    <TextView
-        p:id="@+id/labelRecurso"
-        p:layout_width="wrap_content"
-        p:layout_height="wrap_content"
-        p:layout_gravity="center_horizontal"
+        p:text="AGENDAMIENTO"
         p:textSize="20sp" />
     <ScrollView
         p:layout_width="match_parent"
         p:layout_height="match_parent">
         <LinearLayout
             p:orientation="vertical"
-            p:padding="20px"
             p:layout_width="match_parent"
-            p:layout_height="match_parent">
-            <DatePicker
-                p:id="@+id/dateFrom"
+            p:layout_height="match_parent"
+            p:padding="0dp">
+            <LinearLayout
+                p:orientation="horizontal"
+                p:padding="0dp"
                 p:layout_width="match_parent"
                 p:layout_height="match_parent"
-                p:calendarViewShown="false"
-                p:datePickerMode="spinner" />
-            <TimePicker
-                p:id="@+id/hourFrom"
-                p:layout_width="match_parent"
-                p:layout_height="match_parent" />
-            <DatePicker
-                p:id="@+id/dateTo"
-                p:layout_width="match_parent"
-                p:layout_height="match_parent"
-                p:calendarViewShown="false"
-                p:datePickerMode="spinner" />
-            <TimePicker
-                p:id="@+id/hourTo"
-                p:layout_width="match_parent"
-                p:layout_height="match_parent" />
+                p:gravity="left">
+                <LinearLayout
+                    p:orientation="vertical"
+                    p:padding="10dp"
+                    p:layout_width="wrap_content"
+                    p:layout_height="wrap_content"
+                    p:layout_gravity="left"
+                    p:gravity="left">
+                    <TextView
+                        p:textAppearance="?android:attr/textAppearanceMedium"
+                        p:layout_gravity="left"
+                        p:gravity="left"
+                        p:layout_margin="5dp"
+                        p:layout_width="wrap_content"
+                        p:layout_height="wrap_content"
+                        p:textSize="15sp"
+                        p:textStyle="bold"
+                        p:text="Recurso" />
+                    <TextView
+                        p:textAppearance="?android:attr/textAppearanceMedium"
+                        p:layout_gravity="left"
+                        p:gravity="left"
+                        p:layout_margin="5dp"
+                        p:layout_width="wrap_content"
+                        p:layout_height="wrap_content"
+                        p:textSize="15sp"
+                        p:textStyle="bold"
+                        p:text="Inicio" />
+                    <TextView
+                        p:textAppearance="?android:attr/textAppearanceMedium"
+                        p:layout_gravity="left"
+                        p:gravity="left"
+                        p:layout_margin="5dp"
+                        p:layout_width="wrap_content"
+                        p:layout_height="wrap_content"
+                        p:textSize="20sp"
+                        p:textStyle="bold"
+                        p:text="" />
+                    <TextView
+                        p:textAppearance="?android:attr/textAppearanceMedium"
+                        p:layout_gravity="left"
+                        p:gravity="left"
+                        p:layout_margin="5dp"
+                        p:layout_width="wrap_content"
+                        p:layout_height="wrap_content"
+                        p:textSize="15sp"
+                        p:textStyle="bold"
+                        p:text="Fin" />
+                </LinearLayout>
+                <LinearLayout
+                    p:orientation="vertical"
+                    p:padding="10dp"
+                    p:layout_width="match_parent"
+                    p:layout_height="wrap_content">
+                    <TextView
+                        p:textAppearance="?android:attr/textAppearanceMedium"
+                        p:layout_gravity="center_vertical"
+                        p:gravity="left"
+                        p:layout_margin="5dp"
+                        p:layout_width="wrap_content"
+                        p:layout_height="wrap_content"
+                        p:textSize="15sp"
+                        p:id="@+id/resourceLabel"
+                        p:text="" />
+                    <LinearLayout
+                        p:orientation="horizontal"
+                        p:focusable="true"
+                        p:focusableInTouchMode="true"
+                        p:minWidth="25px"
+                        p:minHeight="25px"
+                        p:layout_width="match_parent"
+                        p:layout_height="wrap_content"
+                        p:id="@+id/linearLayout1"
+                        p:layout_gravity="center_vertical"
+                        p:gravity="center_vertical">
+                        <TextView
+                            p:textAppearance="?android:attr/textAppearanceMedium"
+                            p:layout_gravity="center_vertical"
+                            p:gravity="left|center_vertical"
+                            p:layout_margin="5dp"
+                            p:layout_width="wrap_content"
+                            p:layout_height="wrap_content"
+                            p:textSize="15sp"
+                            p:id="@+id/dateFrom"
+                            p:text="" />
+                        <Spinner
+                            p:layout_width="wrap_content"
+                            p:layout_height="wrap_content"
+                            p:gravity="left|center_vertical"
+                            p:spinnerMode="dialog"
+                            p:id="@+id/minuteSpinner" />
+                    </LinearLayout>
+                    <TextView
+                        p:textAppearance="?android:attr/textAppearanceMedium"
+                        p:layout_gravity="left"
+                        p:gravity="left"
+                        p:layout_margin="5dp"
+                        p:layout_width="wrap_content"
+                        p:layout_height="wrap_content"
+                        p:textSize="20sp"
+                        p:textStyle="bold"
+                        p:text=""
+                        p:id="@+id/textView1" />
+                    <TextView
+                        p:textAppearance="?android:attr/textAppearanceMedium"
+                        p:layout_gravity="center_vertical"
+                        p:gravity="left|center_vertical"
+                        p:layout_margin="5dp"
+                        p:layout_width="wrap_content"
+                        p:layout_height="wrap_content"
+                        p:textSize="15sp"
+                        p:id="@+id/dateTo"
+                        p:text="" />
+                </LinearLayout>
+            </LinearLayout>
             <EditText
                 p:id="@+id/comment"
                 p:inputType="text|textMultiLine"
-                p:height="100dp"
+                p:height="150dp"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
-                p:hint="Comentario" />
+                p:hint="Comentario Opcional" />
             <Button
+                p:text="Confirmar"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
-                p:id="@+id/saveButton"
-                p:text="Guardar" />
+                p:id="@+id/saveButton" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

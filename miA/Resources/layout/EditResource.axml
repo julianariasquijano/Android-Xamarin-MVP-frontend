@@ -53,28 +53,88 @@
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
                 p:layout_marginBottom="13dp" />
-            <RadioGroup
-                p:id="@+id/radioGroup"
-                p:layout_width="fill_parent"
-                p:layout_height="wrap_content"
-                p:orientation="vertical">
-                <RadioButton
-                    p:id="@+id/elementRadio"
-                    p:layout_width="wrap_content"
-                    p:layout_height="wrap_content"
-                    p:text="Tipo: Recurso" />
-                <RadioButton
-                    p:id="@+id/groupRadio"
-                    p:layout_width="wrap_content"
-                    p:layout_height="wrap_content"
-                    p:text="Tipo : Carpeta Agrupadora de Recursos" />
-            </RadioGroup>
-            <Button
-                p:id="@+id/resourceSaveButton"
+            <LinearLayout
+                p:orientation="horizontal"
+                p:minWidth="25px"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
-                p:layout_marginBottom="13dp"
-                p:text="Guardar" />
+                p:id="@+id/parametersLayout1"
+                p:gravity="center"
+                p:minHeight="45dp">
+                <LinearLayout
+                    p:orientation="horizontal"
+                    p:layout_width="wrap_content"
+                    p:layout_height="wrap_content"
+                    p:gravity="left">
+                    <TextView
+                        p:textAppearance="?android:attr/textAppearanceSmall"
+                        p:id="@+id/textView1"
+                        p:layout_width="match_parent"
+                        p:layout_height="wrap_content"
+                        p:text="Activo" />
+                    <Switch
+                        p:id="@+id/active"
+                        p:layout_width="match_parent"
+                        p:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    p:orientation="vertical"
+                    p:layout_width="wrap_content"
+                    p:layout_height="wrap_content"
+                    p:gravity="center"
+                    p:id="@+id/rdHoursLayout">
+                    <TextView
+                        p:textAppearance="?android:attr/textAppearanceSmall"
+                        p:id="@+id/textView2"
+                        p:text="Minutos Asociados"
+                        p:gravity="center_vertical"
+                        p:layout_width="wrap_content"
+                        p:layout_height="match_parent" />
+                    <EditText
+                        p:inputType="number"
+                        p:id="@+id/rdMinutes"
+                        p:layout_width="wrap_content"
+                        p:layout_height="match_parent"
+                        p:minWidth="170dp"
+                        p:maxLength="5" />
+                </LinearLayout>
+            </LinearLayout>
+            <Space
+                p:layout_width="match_parent"
+                p:layout_height="24.5dp"
+                p:id="@+id/space1" />
+            <LinearLayout
+                p:orientation="horizontal"
+                p:minWidth="25px"
+                p:minHeight="25px"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:id="@+id/finalLayoutGrouper">
+                <RadioGroup
+                    p:id="@+id/radioGroup"
+                    p:orientation="vertical"
+                    p:layout_width="wrap_content"
+                    p:layout_height="match_parent">
+                    <RadioButton
+                        p:id="@+id/elementRadio"
+                        p:layout_width="wrap_content"
+                        p:layout_height="wrap_content"
+                        p:text="Tipo: Recurso" />
+                    <RadioButton
+                        p:id="@+id/groupRadio"
+                        p:layout_width="wrap_content"
+                        p:layout_height="wrap_content"
+                        p:text="Tipo : Carpeta Agrupadora de Recursos"
+                        p:layout_marginRight="0.0dp"
+                        p:maxWidth="150dp" />
+                </RadioGroup>
+                <Button
+                    p:id="@+id/resourceSaveButton"
+                    p:text="Guardar"
+                    p:layout_width="match_parent"
+                    p:layout_height="match_parent"
+                    p:gravity="center" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
