@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Json;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 
 namespace miA
 {
-    [Activity(Label = "Elemento de Recursos")]
+    [Activity(Label = "Elemento de Recursos", ConfigurationChanges = ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class EditResource : ConfirmedActivity
     {
 

@@ -9,7 +9,7 @@ using Android.Content.PM;
 
 namespace miA
 {
-    [Activity(Label = "miA", MainLauncher = true, ConfigurationChanges = ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait )]
+    [Activity(Label = "miA", MainLauncher = true, Icon = "@drawable/miaLogo" )]
     public class MainActivity : Activity
     {
 

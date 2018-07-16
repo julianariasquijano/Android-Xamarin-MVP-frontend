@@ -67,7 +67,8 @@ namespace miA
 
         }
 
-        protected override void OnResume(){
+        protected override void OnResume()
+        {
             base.OnResume();
             if (Intent.Extras.ContainsKey("start"))
             {
@@ -87,14 +88,28 @@ namespace miA
         }
 
         private void PopulateButtons(){
+
             var resourceViewLayout = FindViewById<LinearLayout>(Resource.Id.resourceViewLayout);
             resourceViewLayout.RemoveAllViews();
-            foreach (var childRd in rd.children)
+            if (rd.children.Count >0)
             {
 
-                addLayoutButton(resourceViewLayout, ResourceDefinition.ToJson(childRd));
+                foreach (var childRd in rd.children)
+                {
 
+                    addLayoutButton(resourceViewLayout, ResourceDefinition.ToJson(childRd));
+
+                }
             }
+            else {
+                if (rd.name != "Grupo Principal")
+                {
+                    TextView message = new TextView(this);
+                    message.Text = "Presiona sobre el ícono de edición para ver y editar los detalles de este elemento.";
+                    resourceViewLayout.AddView(message);
+                }
+            }
+
         }
 
 

@@ -11,14 +11,14 @@
         p:layout_width="match_parent"
         p:layout_height="wrap_content"
         p:gravity="left"
-        p:background="#ffa0a7d4"
+        p:background="#6292cb"
         p:layout_gravity="top">
         <LinearLayout
             p:orientation="horizontal"
             p:layout_width="wrap_content"
             p:layout_height="wrap_content"
             p:gravity="left"
-            p:background="#ffa0a7d4">
+            p:background="#6292cb">
             <ImageButton
                 p:layout_width="wrap_content"
                 p:layout_height="match_parent"
@@ -36,7 +36,7 @@
             p:layout_height="wrap_content"
             p:layout_gravity="right"
             p:gravity="right"
-            p:background="#ffa0a7d4" />
+            p:background="#6292cb" />
     </LinearLayout>
     <TextView
         p:layout_width="wrap_content"

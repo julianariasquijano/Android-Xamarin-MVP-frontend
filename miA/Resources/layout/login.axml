@@ -22,8 +22,8 @@
                 p:padding="0px"
                 p:layout_margin="0px"
                 p:scaleType="fitCenter"
-                p:scaleX="0.5"
-                p:scaleY="0.5"
+                p:scaleX="0.75"
+                p:scaleY="0.75"
                 p:id="@+id/logo" />
             <EditText
                 p:inputType="textEmailAddress"

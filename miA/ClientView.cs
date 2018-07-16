@@ -92,12 +92,25 @@ namespace miA
         {
             var resourceViewLayout = FindViewById<LinearLayout>(Resource.Id.resourceViewLayout);
             resourceViewLayout.RemoveAllViews();
-            foreach (var childRd in cd.children)
+            if (cd.children.Count > 0)
             {
 
-                addLayoutButton(resourceViewLayout, ClientDefinition.ToJson(childRd));
+                foreach (var childRd in cd.children)
+                {
 
+                    addLayoutButton(resourceViewLayout, ClientDefinition.ToJson(childRd));
+
+                }
             }
+            else
+            {
+                if (cd.name != "Grupo Principal"){
+                    TextView message = new TextView(this);
+                    message.Text = "Presiona sobre el ícono de edición para ver y editar los detalles de este elemento.";
+                    resourceViewLayout.AddView(message);
+                }
+            }
+
         }
 
 

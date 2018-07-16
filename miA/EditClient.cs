@@ -2,13 +2,14 @@
 using System.Json;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 
 namespace miA
 {
-    [Activity(Label = "Elemento de Clientes")]
+    [Activity(Label = "Elemento de Clientes", ConfigurationChanges = ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class EditClient : ConfirmedActivity
     {
 
@@ -35,8 +36,16 @@ namespace miA
                 FindViewById<EditText>(Resource.Id.clientName).Text = cd.name;
                 FindViewById<RadioGroup>(Resource.Id.radioGroup).Visibility = ViewStates.Invisible;
 
-            }
+                if (cd.type == ClientTypes.Element)
+                {
+                    FindViewById<EditText>(Resource.Id.clientMail).Text = cd.mail;
+                    FindViewById<EditText>(Resource.Id.clientMail).Visibility = ViewStates.Visible;
+                    FindViewById<EditText>(Resource.Id.clientMail).Enabled = false;
+                }
 
+
+
+            }
 
             var backButton = FindViewById<ImageButton>(Resource.Id.backButton);
             backButton.Click += (sender, e) => {
