@@ -14,7 +14,7 @@ namespace miA
     {
 
 
-        public static string versionApp = "1"; //Habilita o inhabilita el uso de la app dependiendo de lo que el backend informe
+        public static string versionApp = "2"; //Habilita o inhabilita el uso de la app dependiendo de lo que el backend informe
         public static string mensajeVersion = "Por favor actualiza la versión de esta Aplicación.";
         public static string mensajeMantenimiento = "Aplicación en mantenimiento.";
 
