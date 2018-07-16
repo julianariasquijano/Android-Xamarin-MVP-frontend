@@ -92,9 +92,16 @@ namespace miA
 
                     JsonValue resultado = Datos.saveUserClients(datos);
 
+                    if ((string)resultado["status"] == "OK" )
+                    {
+                        Finish();
+                        OverridePendingTransition(0, 0);
+                    }
+                    else
+                    {
+                        Utilidades.showMessage(this, "Antención", "Error de conexión", "OK");
+                    }
 
-                    Finish();
-                    OverridePendingTransition(0, 0);
 
                 }
                 else Utilidades.showMessage(this, "Atención", validationResult, "OK");
@@ -172,12 +179,19 @@ namespace miA
 
             JsonValue resultado = Datos.saveUserClients(datos);
 
+            if ((string)resultado["status"] == "OK" && (string)resultado["mensaje"] == "")
+            {
+                Intent intent = new Intent(this, typeof(ResourceView));
+                intent.PutExtra("close", "");
+                SetResult(Result.Ok, intent);
+                Finish();
+                OverridePendingTransition(0, 0);
+            }
+            else
+            {
+                Utilidades.showMessage(this, "Antención", "Error de conexión", "OK");
+            }
 
-            Intent intent = new Intent(this, typeof(ResourceView));
-            intent.PutExtra("close", "");
-            SetResult(Result.Ok, intent);
-            Finish();
-            OverridePendingTransition(0, 0);
         }
 
         public override void NegativeConfirm()

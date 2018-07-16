@@ -41,8 +41,11 @@ namespace miA
             else
             {
 
-                Utilidades.showMessage(this, "Antención", (string)resultado["mensaje"], "OK");
-                this.Finish();
+                Intent intent = new Intent(this, typeof(MainActivity));
+                intent.PutExtra("networkError", "");
+                SetResult(Result.Ok, intent);
+                Finish();
+                OverridePendingTransition(0, 0);
 
             }
 
@@ -98,7 +101,7 @@ namespace miA
                     else
                     {
 
-                        Utilidades.showMessage(this, "Antención", (string)resultado["mensaje"], "OK");
+                        Utilidades.showMessage(this, "Antención", "Error de conexión", "OK");
 
                     }
 

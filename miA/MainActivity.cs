@@ -157,11 +157,17 @@ namespace miA
                 var foreignAgendasButton = FindViewById<Button>(Resource.Id.foreignAgendasButton);
                 foreignAgendasButton.Click += (sender, e) => {
 
-                    Information.PopulateForeignAgendas();
+                    if (!Information.PopulateForeignAgendas())
+                    {
+                        Utilidades.showMessage(this, "Antención", "Error de conexión", "OK");
+                    }
+                    else {
+                        var intent = new Intent(this, typeof(ForeignAgendas));
+                        StartActivity(intent);
+                        OverridePendingTransition(0, 0);
+   
+                    }
 
-                    var intent = new Intent(this, typeof(ForeignAgendas));
-                    StartActivity(intent);
-                    OverridePendingTransition(0, 0);
 
                 };
 
@@ -181,15 +187,27 @@ namespace miA
 
                     if (Information.mainRd == null)
                     {
-                        Information.PopulateResources();
+                        if (!Information.PopulateResources())
+                        {
+                            Utilidades.showMessage(this, "Antención", "Error de conexión", "OK");
+                        }
+                        else {
+                            var intent = new Intent(this, typeof(ResourceView));
+                            intent.PutExtra("json", ResourceDefinition.ToJson(Information.mainRd));
+                            intent.PutExtra("start", "");
+                            StartActivity(intent);
+                            OverridePendingTransition(0, 0);
+                        }
+
                     }
-
-                    var intent = new Intent(this, typeof(ResourceView));
-                    intent.PutExtra("json", ResourceDefinition.ToJson(Information.mainRd));
-                    intent.PutExtra("start", "");
-                    StartActivity(intent);
-                    OverridePendingTransition(0, 0);
-
+                    else {
+                        var intent = new Intent(this, typeof(ResourceView));
+                        intent.PutExtra("json", ResourceDefinition.ToJson(Information.mainRd));
+                        intent.PutExtra("start", "");
+                        StartActivity(intent);
+                        OverridePendingTransition(0, 0);
+                        
+                    }
 
                 };
 
@@ -198,15 +216,27 @@ namespace miA
 
                     if (Information.mainCd == null)
                     {
-                        Information.PopulateClients();
+                        if(!Information.PopulateClients()){
+                            Utilidades.showMessage(this, "Antención", "Error de conexión", "OK");
+                        }
+                        else {
+                            var intent = new Intent(this, typeof(ClientView));
+                            intent.PutExtra("json", ClientDefinition.ToJson(Information.mainCd));
+                            intent.PutExtra("start", "");
+                            StartActivity(intent);
+                            OverridePendingTransition(0, 0);  
+                        }
+                    }
+                    else {
+                        var intent = new Intent(this, typeof(ClientView));
+                        intent.PutExtra("json", ClientDefinition.ToJson(Information.mainCd));
+                        intent.PutExtra("start", "");
+                        StartActivity(intent);
+                        OverridePendingTransition(0, 0);  
                     }
 
 
-                    var intent = new Intent(this, typeof(ClientView));
-                    intent.PutExtra("json", ClientDefinition.ToJson(Information.mainCd));
-                    intent.PutExtra("start", "");
-                    StartActivity(intent);
-                    OverridePendingTransition(0, 0);
+
 
                 };
 
@@ -214,7 +244,7 @@ namespace miA
                 userDataButton.Click += (sender, e) => {
 
                     var intent = new Intent(this, typeof(EditarRegistro));
-                    StartActivity(intent);
+                    StartActivityForResult(intent, 0);
                     OverridePendingTransition(0, 0);
 
 
@@ -257,6 +287,27 @@ namespace miA
             FindViewById<Button>(Resource.Id.buttonRemember).Enabled = true;
             FindViewById<Button>(Resource.Id.buttonRegister).Enabled = true;
 
+        }
+
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            if (resultCode == Result.Ok)
+            {
+                if (data.Extras != null)
+                {
+                    if (data.Extras.ContainsKey("close"))
+                    {
+                        Finish();
+                    }
+                    if (data.Extras.ContainsKey("networkError"))
+                    {
+                        Utilidades.showMessage(this,"Atención","Error de conexión","OK");
+                    }
+                }
+
+            }
         }
 
 

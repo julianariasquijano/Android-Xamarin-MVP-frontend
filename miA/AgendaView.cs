@@ -229,7 +229,11 @@ namespace miA
             else
             {
 
-                Utilidades.showMessage(this, "Antención", (string)result["mensaje"], "OK");
+                Intent intent = new Intent(this, typeof(ForeignResourceView));
+                intent.PutExtra("networkError", "");
+                SetResult(Result.Ok, intent);
+                Finish();
+                OverridePendingTransition(0, 0);
 
             }
 

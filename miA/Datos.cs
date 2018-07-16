@@ -30,7 +30,7 @@ namespace miA
 
 
         private static int intentosHttp = 2;
-        private static int intentosHttpTimeOut = 10000;
+        private static int intentosHttpTimeOut = 6000;
 
         public Datos()
         {

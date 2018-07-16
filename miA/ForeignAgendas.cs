@@ -62,15 +62,43 @@ namespace miA
                     intent.PutExtra("start", "");
                     Information.seletedForeignAgenda = foreignAgenda;
 
-                    StartActivity(intent);
+                    StartActivityForResult(intent, 0);
                     OverridePendingTransition(0, 0);
 
 
                 }
 
             }
+            else
+            {
+
+                Utilidades.showMessage(this, "Antención", "Error de conexión", "OK");
+
+            }
 
         }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            if (resultCode == Result.Ok)
+            {
+                if (data.Extras != null)
+                {
+                    if (data.Extras.ContainsKey("close"))
+                    {
+                        Finish();
+                        OverridePendingTransition(0, 0);
+                    }
+                    if (data.Extras.ContainsKey("networkError"))
+                    {
+                        Utilidades.showMessage(this, "Atención", "Error de conexión", "OK");
+                    }
+                }
+
+            }
+        }
+
 
         public override void OnBackPressed()
         {

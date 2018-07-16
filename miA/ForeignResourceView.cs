@@ -109,7 +109,7 @@ namespace miA
                     var intent = new Intent(this, typeof(AgendaView));
 
                     intent.PutExtra("rdJson", json);
-                    StartActivity(intent);
+                    StartActivityForResult(intent, 0);
                     OverridePendingTransition(0, 0);
 
                 }
@@ -131,6 +131,11 @@ namespace miA
                     if (data.Extras.ContainsKey("close"))
                     {
                         Finish();
+                        OverridePendingTransition(0, 0);
+                    }
+                    if (data.Extras.ContainsKey("networkError"))
+                    {
+                        Utilidades.showMessage(this, "Atención", "Error de conexión", "OK");
                     }
                 }
 

@@ -14,7 +14,7 @@ namespace miA
         public static List<ForeignAgenda> foreignAgendas;
         public static ForeignAgenda seletedForeignAgenda;
 
-        public static void PopulateResources()
+        public static bool PopulateResources()
         {
 
             JsonValue resultado = Datos.LlamarWsSync(Datos.sessionDataWebServiceUrl + "getUserResources", Datos.idUsuario);
@@ -27,11 +27,19 @@ namespace miA
                     mainRd = new ResourceDefinition();mainRd.name = "Grupo Principal";
                 }
                 else mainRd = ResourceDefinition.FromJson(rdJson);
+
+                return true;
+            }
+            else
+            {
+
+                return false;
+
             }
 
         }
 
-        public static void PopulateClients()
+        public static bool PopulateClients()
         {
             foreignAgendas = new List<ForeignAgenda>();
             JsonValue resultado = Datos.LlamarWsSync(Datos.sessionDataWebServiceUrl + "getUserClients", Datos.idUsuario);
@@ -44,11 +52,14 @@ namespace miA
                     mainCd = new ClientDefinition(); mainCd.name = "Grupo Principal";
                 }
                 else mainCd = ClientDefinition.FromJson(cdJson);
+
+                return true;
             }
+            else return false;
 
         }
 
-        public static void PopulateForeignAgendas()
+        public static bool PopulateForeignAgendas()
         {
             
             foreignAgendas = new List<ForeignAgenda>();
@@ -76,7 +87,10 @@ namespace miA
                     }
                 }
 
+                return true;
+
             }
+            else return false;
 
         }
 

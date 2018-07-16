@@ -154,7 +154,7 @@ namespace miA
             }
             else
             {
-                Utilidades.showMessage(this, "Antención", (string)resultado["mensaje"], "OK");
+                Utilidades.showMessage(this, "Antención", "Error de conexión", "OK");
             }
 
         }
