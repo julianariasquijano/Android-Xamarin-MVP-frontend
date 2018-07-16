@@ -59,7 +59,7 @@
                 p:visibility="invisible"
                 p:layout_margin="5dp" />
             <EditText
-                p:inputType="text"
+                p:inputType="textCapSentences"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
                 p:id="@+id/registroNombre"

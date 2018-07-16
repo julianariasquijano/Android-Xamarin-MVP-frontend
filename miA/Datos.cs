@@ -21,8 +21,13 @@ namespace miA
         public static string registerAndAuthenticationWebServiceUrl = "http://www.enjoyframework.com?app=mia&mod=ra&act=";
         public static string sessionDataWebServiceUrl = "http://www.enjoyframework.com?app=mia&mod=sd&act=";
         public static string personalDataBaseWebServiceUrl = "http://www.enjoyframework.com?app=mia&mod=pdb&act=";
+
         public static string idUsuario = ""; //Usado cuando el usuario ha realizado un login satisfactorio
         public static string token = "";
+        public static string pdb = "";
+        public static string idPdb = "";
+
+
 
         private static int intentosHttp = 2;
         private static int intentosHttpTimeOut = 10000;
@@ -271,6 +276,24 @@ namespace miA
 
             Encoding iso = Encoding.GetEncoding("ISO-8859-1");
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(Datos.sessionDataWebServiceUrl + "saveForeginAppointment" + cadenaDeParametros));
+
+            return HttpWsRequestSync(request);
+        }
+
+
+        public static JsonValue getResourceAgenda(Dictionary<string, string> data)
+        {
+            // Create an HTTP web request using the URL:
+            string cadenaDeParametros = "";
+
+            cadenaDeParametros += "&idUsuario=" + Datos.idUsuario;
+            cadenaDeParametros += "&token=" + Datos.token;
+            cadenaDeParametros += "&resourceName=" + data["resourceName"];
+            cadenaDeParametros += "&faPdb=" + data["faPdb"];
+            cadenaDeParametros += "&faIdPdb=" + data["faIdPdb"];
+
+            Encoding iso = Encoding.GetEncoding("ISO-8859-1");
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(Datos.sessionDataWebServiceUrl + "getResourceAgenda" + cadenaDeParametros));
 
             return HttpWsRequestSync(request);
         }

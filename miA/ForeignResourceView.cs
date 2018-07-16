@@ -1,4 +1,6 @@
-﻿using Android.App;
+﻿using System.Collections.Generic;
+using System.Json;
+using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
@@ -101,11 +103,13 @@ namespace miA
                 }
                 else
                 {
+
                     var intent = new Intent(this, typeof(AgendaView));
 
                     intent.PutExtra("rdJson", json);
                     StartActivity(intent);
                     OverridePendingTransition(0, 0);
+
                 }
 
             };

@@ -73,6 +73,9 @@ namespace miA
                         {
                             Datos.idUsuario = mail;
                             Datos.token = (string)resultado["token"];
+                            Datos.pdb = (string)resultado["pdb"];
+                            Datos.idPdb = (string)resultado["idPdb"];
+
                             var preferencias = Application.Context.GetSharedPreferences("miax", FileCreationMode.Private);
 
                             var editorPreferencias = preferencias.Edit();
@@ -80,6 +83,9 @@ namespace miA
                             editorPreferencias.PutString("mail", Datos.idUsuario);
                             editorPreferencias.PutString("idUsuario", Datos.idUsuario);
                             editorPreferencias.PutString("token", Datos.token);
+                            editorPreferencias.PutString("pdb", Datos.pdb);
+                            editorPreferencias.PutString("idPdb", Datos.idPdb);
+
                             editorPreferencias.PutString("logged", "logged");
 
                             editorPreferencias.Commit();

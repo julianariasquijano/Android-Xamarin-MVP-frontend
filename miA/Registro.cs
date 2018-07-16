@@ -57,6 +57,8 @@ namespace miA
                     {
                         Datos.idUsuario = mail.Text.ToLower().Trim();;
                         Datos.token = (string)resultado["token"];
+                        Datos.pdb = (string)resultado["pdb"];
+                        Datos.idPdb = (string)resultado["idPdb"];
 
                         if (Datos.token != "")
                         {
@@ -66,6 +68,9 @@ namespace miA
                             editorPreferencias.PutString("mail", Datos.idUsuario);
                             editorPreferencias.PutString("idUsuario", Datos.idUsuario);
                             editorPreferencias.PutString("token", Datos.token);
+                            editorPreferencias.PutString("pdb", Datos.pdb);
+                            editorPreferencias.PutString("idPdb", Datos.idPdb);
+
                             editorPreferencias.PutString("logged", "logged");
                             editorPreferencias.Commit();
 
