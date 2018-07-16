@@ -67,8 +67,10 @@ namespace miA
             resourceViewLayout.RemoveAllViews();
             foreach (var childRd in rd.children)
             {
-
-                addLayoutButton(resourceViewLayout, ResourceDefinition.ToJson(childRd));
+                if (childRd.active)
+                {
+                    addLayoutButton(resourceViewLayout, ResourceDefinition.ToJson(childRd));
+                }
 
             }
         }

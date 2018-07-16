@@ -166,6 +166,16 @@ namespace miA
                 };
 
 
+                var statsButton = FindViewById<Button>(Resource.Id.statsButton);
+                statsButton.Click += (sender, e) => {
+
+                    var intent = new Intent(this, typeof(StatsView));
+                    StartActivity(intent);
+                    OverridePendingTransition(0, 0);
+
+                };
+
+
                 var myResourcesButton = FindViewById<Button>(Resource.Id.myResourcesButton);
                 myResourcesButton.Click += (sender, e) => {
 

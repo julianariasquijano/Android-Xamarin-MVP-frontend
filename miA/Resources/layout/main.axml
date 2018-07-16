@@ -22,14 +22,14 @@
                 p:layout_marginBottom="13dp"
                 p:text="Agendas Externas"
                 p:drawableLeft="@drawable/foreignagendas" />
-            <Button
+        <!--            <Button
                 p:id="@+id/pendingScheduleButton"
                 p:background="@android:color/transparent"
                 p:layout_width="match_parent"
                 p:layout_height="wrap_content"
                 p:layout_marginBottom="13dp"
                 p:text="Eventos Pendientes"
-                p:drawableLeft="@drawable/pendingschedule" />
+                p:drawableLeft="@drawable/pendingschedule" />-->
             <Button
                 p:id="@+id/myResourcesButton"
                 p:background="@android:color/transparent"

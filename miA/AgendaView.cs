@@ -67,13 +67,33 @@ namespace miA
 
                     bool makeNewAppointment = true;
 
+                    int incomingYear = e.Calendar.Get(CalendarField.Year);
+                    int incomingMonth = e.Calendar.Get(CalendarField.Month);
+                    int incomingDay = e.Calendar.Get(CalendarField.DayOfMonth);
+                    int incomingHour = e.Calendar.Get(CalendarField.HourOfDay);
+                    int incomingMinute = e.Calendar.Get(CalendarField.Minute);
+
+
                     foreach (var actualAppointment in tempClientAppointments)
                     {
-                        if (actualAppointment.hour == e.Calendar.Get(CalendarField.HourOfDay))
+                        if (actualAppointment.year == incomingYear)
                         {
-                            if (actualAppointment.minute == e.Calendar.Get(CalendarField.Minute))
+                            if (actualAppointment.month  == incomingMonth + 1)
                             {
-                                makeNewAppointment = false;
+
+                                if (actualAppointment.day == incomingDay)
+                                {
+
+                                    if (actualAppointment.hour == incomingHour)
+                                    {
+
+                                        if (actualAppointment.minute == incomingMinute)
+                                        {
+                                            makeNewAppointment = false;
+                                            break;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -127,6 +147,7 @@ namespace miA
             JsonValue result = Datos.getResourceAgenda(data);
             schedule.Appointments.Clear();
             nonAccessibleBlocksCollection.Clear();
+            tempClientAppointments.Clear();
 
             if ((string)result["status"] == "OK" && (string)result["mensaje"] == "")
             {
@@ -178,9 +199,10 @@ namespace miA
                     endTimeData["hour"] = endHour;
                     endTimeData["minute"] = endMinute;
 
-
-
                     var thisAppointment = new TempClientAppointment();
+                    thisAppointment.year = startYear;
+                    thisAppointment.month = startMonth;
+                    thisAppointment.day = startDay;
                     thisAppointment.hour = startHour;
                     thisAppointment.minute = startMinute;
                     thisAppointment.pdb = (string)agendaRegister["client_pdb"];
@@ -194,7 +216,7 @@ namespace miA
                         CreateAppointment(startTimeData, endTimeData, (string)agendaRegister["client_name"], (string)agendaRegister["comment"], Color.DarkOrange);
 
                     }
-                    else CreateAppointment(startTimeData, endTimeData, "No Disponible", "", Color.Blue);
+                    else CreateAppointment(startTimeData, endTimeData, "No Disponible", "", Color.DarkBlue);
 
 
                 }
@@ -292,6 +314,9 @@ namespace miA
 
 
     public class TempClientAppointment{
+        public int year;
+        public int month;
+        public int day;
         public int hour;
         public int minute;
         public string pdb;

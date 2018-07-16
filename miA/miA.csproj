@@ -109,6 +109,7 @@
     <Compile Include="ForeignResourceView.cs" />
     <Compile Include="AgendaView.cs" />
     <Compile Include="Appointment.cs" />
+    <Compile Include="StatsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
