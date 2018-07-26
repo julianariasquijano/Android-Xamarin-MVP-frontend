@@ -48,6 +48,7 @@ namespace miA
             var editButton = FindViewById<ImageButton>(Resource.Id.editButton);
             editButton.Click += (sender, e) => {
                 var intent = new Intent(this, typeof(EditResource));
+                intent.PutExtra("parentResourceId", parentResourceId);
                 intent.PutExtra("resourceId", resourceId);
                 StartActivityForResult(intent, 0);
                 OverridePendingTransition(0, 0);
@@ -57,7 +58,8 @@ namespace miA
             addButton.Click += (sender, e) => {
 
                 var intent = new Intent(this, typeof(EditResource));
-                intent.PutExtra("resourceId", resourceId);
+                intent.PutExtra("resourceId", "");
+                intent.PutExtra("parentResourceId", resourceId);
                 intent.PutExtra("creating", "");
                 StartActivity(intent);
                 OverridePendingTransition(0, 0);
@@ -75,6 +77,7 @@ namespace miA
                 var editButton = FindViewById<ImageButton>(Resource.Id.editButton);
                 editButton.Visibility = ViewStates.Invisible;
                 resourceId = rd.name;
+                parentResourceId = "";
             }
             else
             {

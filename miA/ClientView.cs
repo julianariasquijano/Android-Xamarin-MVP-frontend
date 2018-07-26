@@ -48,8 +48,8 @@ namespace miA
             var editButton = FindViewById<ImageButton>(Resource.Id.editButton);
             editButton.Click += (sender, e) => {
                 var intent = new Intent(this, typeof(EditClient));
+                intent.PutExtra("parentClientId", parentClientId);
                 intent.PutExtra("clientId", clientId);
-                //StartActivity(intent);
                 StartActivityForResult(intent, 0);
                 OverridePendingTransition(0, 0);
             };
@@ -58,7 +58,8 @@ namespace miA
             addButton.Click += (sender, e) => {
 
                 var intent = new Intent(this, typeof(EditClient));
-                intent.PutExtra("clientId", clientId);
+                intent.PutExtra("clientId", "");
+                intent.PutExtra("parentClientId", clientId);
                 intent.PutExtra("creating", "");
                 StartActivity(intent);
                 OverridePendingTransition(0, 0);
@@ -76,6 +77,7 @@ namespace miA
                 var editButton = FindViewById<ImageButton>(Resource.Id.editButton);
                 editButton.Visibility = ViewStates.Invisible;
                 clientId = cd.name;
+                parentClientId = "";
             }
             else
             {

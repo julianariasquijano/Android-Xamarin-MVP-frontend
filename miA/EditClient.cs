@@ -15,6 +15,8 @@ namespace miA
 
         bool editing = true;
         string clientId;
+        string parentClientId;
+
         ClientDefinition cd;
 
         ClientTypes elementType;
@@ -23,6 +25,7 @@ namespace miA
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.EditClient);
             clientId = Intent.GetStringExtra("clientId");
+            parentClientId = Intent.GetStringExtra("parentClientId");
             elementType = ClientTypes.None;
             if (Intent.Extras.ContainsKey("creating"))
             {
@@ -67,41 +70,65 @@ namespace miA
                 string validationResult = Validate();
                 if (validationResult == "")
                 {
-                    cd.name = FindViewById<EditText>(Resource.Id.clientName).Text;
 
-                    if (!editing)
+                    string newName = FindViewById<EditText>(Resource.Id.clientName).Text;
+
+                    //avoid name repetitions at this level
+
+                    var parentCd = new ClientDefinition();
+                    if (parentClientId == "") parentCd = Information.mainCd;
+                    else parentCd = ClientDefinition.getNode(Information.mainCd, parentClientId);
+
+                    bool nameAlreadyExists = false;
+
+                    foreach (var child in parentCd.children)
                     {
-                        cd.mail = FindViewById<EditText>(Resource.Id.clientMail).Text;
-                        cd.type = elementType;
-                        var parentNode = ClientDefinition.getNode(Information.mainCd, clientId);
-                        parentNode.children.Add(cd);
-
+                        if (child.name == newName)
+                        {
+                            nameAlreadyExists = true;
+                            break;
+                        }
                     }
 
-                    var datos = new Dictionary<string, string>
+
+                    if (!nameAlreadyExists)
                     {
-                        ["cdJson"] = ClientDefinition.ToJson(Information.mainCd)
-                    };
+                        cd.name = FindViewById<EditText>(Resource.Id.clientName).Text;
 
-                    if (!editing)
-                    {
-                        datos["mail"] = cd.mail;
-                        datos["operation"] = "add";
+                        if (!editing)
+                        {
+                            cd.mail = FindViewById<EditText>(Resource.Id.clientMail).Text;
+                            cd.type = elementType;
+                            var parentNode = ClientDefinition.getNode(Information.mainCd, parentClientId);
+                            parentNode.children.Add(cd);
 
-                    }
+                        }
 
-                    JsonValue resultado = Datos.saveUserClients(datos);
+                        var datos = new Dictionary<string, string>
+                        {
+                            ["cdJson"] = ClientDefinition.ToJson(Information.mainCd)
+                        };
 
-                    if ((string)resultado["status"] == "OK" )
-                    {
-                        Finish();
-                        OverridePendingTransition(0, 0);
-                    }
-                    else
-                    {
-                        Utilidades.showMessage(this, "Antención", "Error de conexión", "OK");
-                    }
+                        if (!editing)
+                        {
+                            datos["mail"] = cd.mail;
+                            datos["operation"] = "add";
 
+                        }
+
+                        JsonValue resultado = Datos.saveUserClients(datos);
+
+                        if ((string)resultado["status"] == "OK")
+                        {
+                            Finish();
+                            OverridePendingTransition(0, 0);
+                        }
+                        else
+                        {
+                            Utilidades.showMessage(this, "Antención", "Error de conexión", "OK");
+                        }
+
+                    } else Utilidades.showMessage(this, "Error", "Ya existe un elemento de cliente con ese nombre.", "OK");
 
                 }
                 else Utilidades.showMessage(this, "Atención", validationResult, "OK");
@@ -158,14 +185,14 @@ namespace miA
                 }
             }
 
-            string parentId = ClientDefinition.getParentNodeId(Information.mainCd, clientId);
-            var parentRd = ClientDefinition.getNode(Information.mainCd, parentId);
+            //string parentId = ClientDefinition.getParentNodeId(Information.mainCd, clientId);
+            var parentCd = ClientDefinition.getNode(Information.mainCd, parentClientId);
 
-            foreach (var child in parentRd.children)
+            foreach (var child in parentCd.children)
             {
                 if (child.name == cd.name)
                 {
-                    parentRd.children.Remove(child);
+                    parentCd.children.Remove(child);
                     break;
                 }
             }

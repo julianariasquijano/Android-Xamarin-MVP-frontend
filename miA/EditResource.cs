@@ -16,6 +16,7 @@ namespace miA
 
         bool editing = true;
         string resourceId;
+        string parentResourceId;
         ResourceDefinition rd;
 
         ResourceTypes elementType;
@@ -24,6 +25,8 @@ namespace miA
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.EditResource);
             resourceId = Intent.GetStringExtra("resourceId");
+            parentResourceId = Intent.GetStringExtra("parentResourceId");
+
             elementType = ResourceTypes.None;
             if (Intent.Extras.ContainsKey("creating"))
             {
@@ -74,44 +77,71 @@ namespace miA
                 string validationResult = ValidateResource();
                 if (validationResult == "")
                 {
-                    rd.name = FindViewById<EditText>(Resource.Id.resourceName).Text;
-                    if (FindViewById<Switch>(Resource.Id.active).Checked)
+                    string newName = FindViewById<EditText>(Resource.Id.resourceName).Text;
+
+                    //avoid name repetitions at this level
+
+                    var parentRd = new ResourceDefinition();
+                    if (parentResourceId == "") parentRd = Information.mainRd;
+                    else parentRd = ResourceDefinition.getNode(Information.mainRd, parentResourceId);
+
+                    bool nameAlreadyExists = false;
+
+                    foreach (var child in parentRd.children)
                     {
-                        rd.active = true;
-                    }
-                    else rd.active = false;
-
-                    try
-                    {
-                        rd.minutes = Int32.Parse(FindViewById<EditText>(Resource.Id.rdMinutes).Text);
-                    }
-                    catch{}
-
-
-                    if (!editing) {
-                        
-                        rd.type = elementType;
-                        var parentNode = ResourceDefinition.getNode(Information.mainRd, resourceId);
-                        parentNode.children.Add(rd);
-                      
+                        if (child.name == newName)
+                        {
+                            nameAlreadyExists = true;
+                            break;
+                        }
                     }
 
-                    var datos = new Dictionary<string, string>
+                    if (!nameAlreadyExists)
                     {
-                        ["rdJson"] = ResourceDefinition.ToJson(Information.mainRd)
-                    };
-                    JsonValue resultado = Datos.saveUserResources(datos);
+
+                        rd.name = FindViewById<EditText>(Resource.Id.resourceName).Text;
+
+                        if (FindViewById<Switch>(Resource.Id.active).Checked)
+                        {
+                            rd.active = true;
+                        }
+                        else rd.active = false;
+
+                        try
+                        {
+                            rd.minutes = Int32.Parse(FindViewById<EditText>(Resource.Id.rdMinutes).Text);
+                        }
+                        catch { }
 
 
-                    if ((string)resultado["status"] == "OK" )
-                    {
-                        Finish();
-                        OverridePendingTransition(0, 0);  
+                        if (!editing)
+                        {
+
+                            rd.type = elementType;
+                            var parentNode = ResourceDefinition.getNode(Information.mainRd, parentResourceId);
+                            parentNode.children.Add(rd);
+
+                        }
+
+                        var datos = new Dictionary<string, string>
+                        {
+                            ["rdJson"] = ResourceDefinition.ToJson(Information.mainRd)
+                        };
+                        JsonValue resultado = Datos.saveUserResources(datos);
+
+
+                        if ((string)resultado["status"] == "OK")
+                        {
+                            Finish();
+                            OverridePendingTransition(0, 0);
+                        }
+                        else
+                        {
+                            Utilidades.showMessage(this, "Antención", "Error de conexión", "OK");
+                        }
                     }
-                    else
-                    {
-                        Utilidades.showMessage(this, "Antención", "Error de conexión", "OK");
-                    }
+
+                    else Utilidades.showMessage(this, "Error", "Ya existe un elemento de recurso con ese nombre.", "OK");
 
 
                 }
@@ -159,8 +189,8 @@ namespace miA
 
         public override void PositiveConfirm(){
 
-            string parentId = ResourceDefinition.getParentNodeId(Information.mainRd, resourceId);
-            var parentRd = ResourceDefinition.getNode(Information.mainRd, parentId);
+            //string parentId = ResourceDefinition.getParentNodeId(Information.mainRd, resourceId);
+            var parentRd = ResourceDefinition.getNode(Information.mainRd, parentResourceId);
 
             foreach (var child in parentRd.children)
             {
