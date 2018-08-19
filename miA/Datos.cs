@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Web;
-using System.Security.Cryptography;
+using SQLite;
 using System.Collections.Generic;
 
 namespace miA
@@ -298,6 +298,74 @@ namespace miA
             return HttpWsRequestSync(request);
         }
 
+
+        public static void TruncateLocalPdbAgenda()
+        {
+
+            SQLiteConnection conexion;
+            conexion = new SQLiteConnection(Utilidades.TraerRutaBd());
+            conexion.CreateTable<pdb_agenda>();
+            conexion.DeleteAll<pdb_agenda>();
+            conexion.Dispose();
+
+        }
+
+        public static void InsertLocalAppointment(pdb_agenda appointment){
+
+            SQLiteConnection conexion;
+            conexion = new SQLiteConnection(Utilidades.TraerRutaBd());
+            conexion.CreateTable<pdb_agenda>();
+            conexion.Insert(appointment);
+            conexion.Dispose();
+            
+        }
+
+        public static List<pdb_agenda> GetLocalAppointments()
+        {
+
+            SQLiteConnection conexion;
+            conexion = new SQLiteConnection(Utilidades.TraerRutaBd());
+            conexion.CreateTable<pdb_agenda>();
+
+            var result = new List<pdb_agenda>();
+            result = conexion.Table<pdb_agenda>().ToList();
+            conexion.Dispose();
+            return result;
+
+
+        }
+
+
     }
 
+    [Table("pdb_agenda")]
+    public class pdb_agenda
+    {
+
+        public string resource_name { get; set; }
+
+        public string client_name { get; set; }
+
+        public string comment { get; set; }
+
+        [NotNull]
+        public string startTime { get; set; }
+
+        [NotNull]
+        public string endTime { get; set; }
+
+        public string fa_name { get; set; }
+
+        public override string ToString()
+        {
+            string entityName = "";
+            if (fa_name == null)
+            {
+                entityName = fa_name;
+            }
+            else entityName = client_name;
+
+            return resource_name + " : " + entityName;
+        }
+    }
 }

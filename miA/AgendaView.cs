@@ -148,6 +148,8 @@ namespace miA
             schedule.Appointments.Clear();
             nonAccessibleBlocksCollection.Clear();
             tempClientAppointments.Clear();
+            Meetings.Clear();
+
 
             if ((string)result["status"] == "OK" && (string)result["mensaje"] == "")
             {
@@ -213,10 +215,10 @@ namespace miA
                     if ((string)agendaRegister["client_pdb"] == Datos.pdb && agendaRegister["client_id_pdb"] == Int32.Parse(Datos.idPdb))
                     {
                         //DisableHourRange(startHour, endHour, "Tu Reserva", Color.DarkOrange);
-                        CreateAppointment(startTimeData, endTimeData, (string)agendaRegister["client_name"], (string)agendaRegister["comment"], Color.DarkOrange);
+                        AddAppointment(startTimeData, endTimeData, (string)agendaRegister["client_name"], (string)agendaRegister["comment"], Color.DarkOrange);
 
                     }
-                    else CreateAppointment(startTimeData, endTimeData, "No Disponible", "", Color.DarkBlue);
+                    else AddAppointment(startTimeData, endTimeData, "No Disponible", "", Color.DarkBlue);
 
 
                 }
@@ -241,20 +243,8 @@ namespace miA
 
         }
 
-
-        private void CreateAppointment(Dictionary<string,int> startTimeData,Dictionary<string, int> endTimeData,string subject,string notes,Color color)
+        private void AddAppointment(Dictionary<string,int> startTimeData,Dictionary<string, int> endTimeData,string subject,string notes,Color color)
         {
-            Java.Util.Random randomTime = new Java.Util.Random();
-
-            Calendar calendar = Calendar.Instance;
-            Calendar DateFrom = Calendar.Instance;
-            DateFrom.Add(CalendarField.Date, -10);
-            Calendar DateTo = Calendar.Instance;
-            DateTo.Add(CalendarField.Date, 10);
-            Calendar dateRangeStart = Calendar.Instance;
-            dateRangeStart.Add(CalendarField.Date, -3);
-            Calendar dateRangeEnd = Calendar.Instance;
-            dateRangeEnd.Add(CalendarField.Date, 3);
 
             ScheduleAppointment meeting = new ScheduleAppointment();
 

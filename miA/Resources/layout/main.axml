@@ -22,6 +22,14 @@
                 p:layout_marginBottom="13dp"
                 p:text="Agendas Externas"
                 p:drawableLeft="@drawable/foreignagendas" />
+            <Button
+                p:id="@+id/generalAgendaButton"
+                p:background="@android:color/transparent"
+                p:layout_width="match_parent"
+                p:layout_height="wrap_content"
+                p:layout_marginBottom="13dp"
+                p:text="Agenda General"
+                p:drawableLeft="@drawable/mygeneralagenda" />
         <!--            <Button
                 p:id="@+id/pendingScheduleButton"
                 p:background="@android:color/transparent"

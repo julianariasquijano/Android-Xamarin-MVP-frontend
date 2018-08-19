@@ -3,9 +3,7 @@ using Android.OS;
 
 using Android.Content;
 using Android.Widget;
-using Android.Graphics;
 using System.Json;
-using Android.Content.PM;
 
 namespace miA
 {
@@ -167,6 +165,18 @@ namespace miA
                         OverridePendingTransition(0, 0);
    
                     }
+
+
+                };
+
+
+                var generalAgendaButton = FindViewById<Button>(Resource.Id.generalAgendaButton);
+                generalAgendaButton.Click += (sender, e) => {
+
+
+                    var intent = new Intent(this, typeof(PersonalAgendaActivity));
+                    StartActivity(intent);
+                    OverridePendingTransition(0, 0);
 
 
                 };

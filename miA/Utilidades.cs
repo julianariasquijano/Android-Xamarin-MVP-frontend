@@ -10,9 +10,11 @@ namespace miA
     public class Utilidades
     {
 
+        static string directorioBase;
 
-        public Utilidades()
+        static Utilidades()
         {
+            directorioBase = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + "/proximus.miagenda";
         }
 
         public static void showMessage(Activity activity,string title,string message, string type){
@@ -122,6 +124,25 @@ namespace miA
         {
             if (number.Length == 1) return number = "0" + number; else return number;
         }
+
+
+        public static string TraerRutaBd()
+        {
+            string ruta = TraerRuta("adata");
+            return ruta;
+
+        }
+
+        public static string TraerRuta(string filename)
+        {
+            if (!System.IO.File.Exists(directorioBase))
+            {
+                System.IO.Directory.CreateDirectory(directorioBase);
+            }
+            return directorioBase + "/" + filename;
+        }
+
+
 
     }
 
