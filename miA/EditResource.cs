@@ -96,7 +96,7 @@ namespace miA
                         }
                     }
 
-                    if (!nameAlreadyExists)
+                    if (!nameAlreadyExists || editing)
                     {
 
                         rd.name = FindViewById<EditText>(Resource.Id.resourceName).Text;

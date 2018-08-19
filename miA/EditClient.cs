@@ -91,7 +91,7 @@ namespace miA
                     }
 
 
-                    if (!nameAlreadyExists)
+                    if (!nameAlreadyExists || editing)
                     {
                         cd.name = FindViewById<EditText>(Resource.Id.clientName).Text;
 
