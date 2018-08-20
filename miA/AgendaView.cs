@@ -66,6 +66,7 @@ namespace miA
                 {
 
                     bool makeNewAppointment = true;
+                    bool forFuture = true;
 
                     int incomingYear = e.Calendar.Get(CalendarField.Year);
                     int incomingMonth = e.Calendar.Get(CalendarField.Month);
@@ -73,6 +74,15 @@ namespace miA
                     int incomingHour = e.Calendar.Get(CalendarField.HourOfDay);
                     int incomingMinute = e.Calendar.Get(CalendarField.Minute);
 
+                    var actualTimeStamp = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
+                    var incomingTimestamp = new DateTimeOffset(new DateTime(incomingYear, incomingMonth + 1, incomingDay, incomingHour, incomingMinute, 0)).ToUnixTimeSeconds();
+
+                    if (incomingTimestamp <= actualTimeStamp)
+                    {
+                        Toast.MakeText(this, "Imposible crear agendamientos en tiempo pasado !", ToastLength.Long).Show();
+                        forFuture = false;
+                    
+                    }
 
                     foreach (var actualAppointment in tempClientAppointments)
                     {
@@ -98,7 +108,7 @@ namespace miA
                         }
                     }
 
-                    if (makeNewAppointment)
+                    if (makeNewAppointment && forFuture)
                     {
                         var intent = new Intent(this, typeof(Appointment));
 
