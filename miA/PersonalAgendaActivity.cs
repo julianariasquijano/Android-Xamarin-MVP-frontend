@@ -68,8 +68,15 @@ namespace miA
 
         public override void OnBackPressed()
         {
-            Finish();
-            OverridePendingTransition(0, 0);
+
+            if (schedule.ScheduleView == ScheduleView.MonthView)
+            {
+                Finish();
+                OverridePendingTransition(0, 0);
+            }
+            else schedule.ScheduleView = ScheduleView.MonthView;
+
+
         }
 
         protected override void OnResume()
