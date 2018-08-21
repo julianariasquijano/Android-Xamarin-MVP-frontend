@@ -96,12 +96,12 @@ namespace miA
                     CreateAppointment((string)agendaRegister["start_time"], (string)agendaRegister["end_time"], (string)agendaRegister["resource_name"] , (string)agendaRegister["client_name"], (string)agendaRegister["comment"], Color.DarkOrange);
 
                     var pdbAgendaAppointment = new pdb_agenda{
-                        startTime = (string) agendaRegister["start_time"],
-                        endTime = (string)agendaRegister["end_time"],
-                        client_name = (string)agendaRegister["client_name"],
+                        startTime = Crypto.Encrypt((string) agendaRegister["start_time"],Utilidades.strangeFormElement+Datos.idUsuario),
+                        endTime = Crypto.Encrypt((string)agendaRegister["end_time"], Utilidades.strangeFormElement+Datos.idUsuario),
+                        client_name = Crypto.Encrypt((string)agendaRegister["client_name"], Utilidades.strangeFormElement+Datos.idUsuario),
                         fa_name = "",
-                        resource_name = (string)agendaRegister["resource_name"],
-                        comment = (string)agendaRegister["comment"]
+                        resource_name = Crypto.Encrypt((string)agendaRegister["resource_name"], Utilidades.strangeFormElement+Datos.idUsuario),
+                        comment = Crypto.Encrypt((string)agendaRegister["comment"], Utilidades.strangeFormElement+Datos.idUsuario)
 
                         };
                     Datos.InsertLocalAppointment(pdbAgendaAppointment);
@@ -118,7 +118,12 @@ namespace miA
 
                 foreach (pdb_agenda agendaRegister in Datos.GetLocalAppointments())
                 {
-                    CreateAppointment(agendaRegister.startTime.ToString(), agendaRegister.endTime.ToString(), agendaRegister.resource_name, agendaRegister.client_name, agendaRegister.comment, Color.DarkOrange);
+                    CreateAppointment(Crypto.Decrypt(agendaRegister.startTime.ToString(), Utilidades.strangeFormElement+Datos.idUsuario), 
+                                      Crypto.Decrypt(agendaRegister.endTime.ToString(), Utilidades.strangeFormElement+Datos.idUsuario), 
+                                      Crypto.Decrypt(agendaRegister.resource_name, Utilidades.strangeFormElement+Datos.idUsuario), 
+                                      Crypto.Decrypt(agendaRegister.client_name, Utilidades.strangeFormElement+Datos.idUsuario), 
+                                      Crypto.Decrypt(agendaRegister.comment, Utilidades.strangeFormElement+Datos.idUsuario), 
+                                      Color.DarkOrange);
                 }
 
                 Toast.MakeText(this, "Error de conexión a la red." , ToastLength.Long).Show();
