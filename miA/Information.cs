@@ -12,6 +12,8 @@ namespace miA
         public static List<ForeignAgenda> foreignAgendas;
         public static ForeignAgenda seletedForeignAgenda;
 
+        public static bool ServiceStopFlag = true;
+
         public static bool PopulateResources()
         {
 

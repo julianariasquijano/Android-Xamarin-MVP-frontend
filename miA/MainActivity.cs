@@ -4,6 +4,12 @@ using Android.OS;
 using Android.Content;
 using Android.Widget;
 using System.Json;
+using System;
+using System.Threading.Tasks;
+using System.Threading;
+using Android.Util;
+using Android.Support.V4.App;
+using Android.Media;
 
 namespace miA
 {
@@ -146,6 +152,13 @@ namespace miA
             else {
                 SetContentView(Resource.Layout.main);
 
+                var ServiceIntent = new Intent(this, typeof(MiaNotificationService));
+                if (Information.ServiceStopFlag)
+                {
+                    Information.ServiceStopFlag = false;
+                    StartService(ServiceIntent);
+                }
+
                 Datos.idUsuario = preferencias.GetString("idUsuario", null);
                 Datos.token = preferencias.GetString("token", null);
                 Datos.pdb = preferencias.GetString("pdb", null);
@@ -165,7 +178,6 @@ namespace miA
                         OverridePendingTransition(0, 0);
    
                     }
-
 
                 };
 
@@ -252,7 +264,7 @@ namespace miA
 
                 var userDataButton = FindViewById<Button>(Resource.Id.userDataButton);
                 userDataButton.Click += (sender, e) => {
-
+                    
                     var intent = new Intent(this, typeof(EditarRegistro));
                     StartActivityForResult(intent, 0);
                     OverridePendingTransition(0, 0);
@@ -274,6 +286,11 @@ namespace miA
 
                     var intent = new Intent(this, typeof(MainActivity));
                     StartActivity(intent);
+
+                    Information.ServiceStopFlag = true;
+                    StopService(ServiceIntent);
+
+
                     this.Finish();
 
                 };
@@ -321,6 +338,59 @@ namespace miA
         }
 
 
+    }
+
+    [Service (Label = "MiaNotificationService") ] 
+    class MiaNotificationService : Service
+    {
+        const string tag = "MiaNotificationService";
+
+        public override void OnCreate()
+        {
+            base.OnCreate();
+
+        }
+
+        public override IBinder OnBind(Intent intent)
+        {
+
+            throw new NotImplementedException();
+        }
+
+
+        public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
+        {
+            Task.Run(() => {
+                while (true)
+                {
+                    if (Information.ServiceStopFlag)
+                    {
+                        break;
+                    }
+
+                    const int NOTIFICATION_ID = 9000;
+                    Notification.Builder notificationBuilder = new Notification.Builder(this)
+                        .SetSmallIcon(Resource.Drawable.miniMiaLogo)
+                        .SetContentTitle("Mia Agenda")
+                        .SetVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
+                        .SetStyle(new Notification.BigTextStyle().BigText("Fulano reservó tal cosa tal dia. y tales y pascuales"));
+
+
+                    var notificationManager = (NotificationManager)GetSystemService(NotificationService);
+                    notificationManager.Notify(NOTIFICATION_ID, notificationBuilder.Build());
+
+
+                    //Thread.Sleep(300000);
+                    Thread.Sleep(10000);
+                }
+            });
+
+            return StartCommandResult.StickyCompatibility;
+        }
+
+        public override void OnDestroy()
+        {
+        }
     }
 
 }

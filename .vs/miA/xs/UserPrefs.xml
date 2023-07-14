@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{25185403-5D5B-4621-B3F0-CB08B5F7B264}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
+  <MonoDevelop.Ide.Workbench ActiveDocument="miA/Information.cs">
+    <Files>
+      <File FileName="miA/MainActivity.cs" Line="345" Column="6" />
+      <File FileName="miA/Information.cs" Line="20" Column="35" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="miA" expanded="True">
+            <Node name="miA" expanded="True">
+              <Node name="Properties" expanded="True" />
+              <Node name="Information.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.tests PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.miA AndroidDesignerPreferredTheme="Theme.AppCompat.Light.NoActionBar" AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.pixel_2_pie_9_0_-_api_28" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/usuario/Desktop/Proyectos/Xamarin/miA/miA/Registro.cs" relfile="miA/Registro.cs" line="58" column="25" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
